@@ -14,12 +14,26 @@ namespace RouletteLogica
         
         public void SetColor(Color color)
         {
-            this.color = color;
+            if(color == Color.Black || color == Color.Red)
+            {
+                this.color = color;
+            }
+            else
+            {
+                throw new ArgumentException("A number color can only be red or black");
+            }
         }
 
         public void SetValue(int value)
         {
-            this.value = value;
+            if (value < 1 || value > 36)
+            {
+                throw new ArgumentException("A number value can only be 1 -> 36");
+            }
+            else
+            {
+                this.value = value;
+            }
         }
     }
 }
