@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Oplossing Blok 1\RouletteLogica\RouletteLogica.csproj" />
+  </ItemGroup>
+
 </Project>
