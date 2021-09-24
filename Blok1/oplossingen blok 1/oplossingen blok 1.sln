@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteLogica1", "..\Oplos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteLogica", "RouletteLogica\RouletteLogica.csproj", "{4F65318B-0226-4908-94DE-2BA9DC9C55ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96A54509-80A7-4B0C-A80B-4666A42CD508}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\C# OO programming files\Feedback.md = ..\..\..\C# OO programming files\Feedback.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
