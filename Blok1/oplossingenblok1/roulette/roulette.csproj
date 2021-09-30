@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Oplossing Blok 1\RouletteLogica\RouletteLogica1.csproj" />
+    <ProjectReference Include="..\RouletteLogica\RouletteLogica.csproj" />
   </ItemGroup>
 
 </Project>

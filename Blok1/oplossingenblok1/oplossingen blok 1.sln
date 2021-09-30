@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "roulette", "roulette\roulette.csproj", "{751B2625-A348-4EA5-BE27-89F859F9AE34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "roulette", "roulette\roulette.csproj", "{751B2625-A348-4EA5-BE27-89F859F9AE34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteLogica1", "..\Oplossing Blok 1\RouletteLogica\RouletteLogica1.csproj", "{121DCE39-C233-4380-AE0E-BB250BC9905C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteLogica", "RouletteLogica\RouletteLogica.csproj", "{4F65318B-0226-4908-94DE-2BA9DC9C55ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteLogica", "RouletteLogica\RouletteLogica.csproj", "{4F65318B-0226-4908-94DE-2BA9DC9C55ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96A54509-80A7-4B0C-A80B-4666A42CD508}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,10 +22,6 @@ Global
 		{751B2625-A348-4EA5-BE27-89F859F9AE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{751B2625-A348-4EA5-BE27-89F859F9AE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{751B2625-A348-4EA5-BE27-89F859F9AE34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{121DCE39-C233-4380-AE0E-BB250BC9905C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{121DCE39-C233-4380-AE0E-BB250BC9905C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{121DCE39-C233-4380-AE0E-BB250BC9905C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{121DCE39-C233-4380-AE0E-BB250BC9905C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F65318B-0226-4908-94DE-2BA9DC9C55ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F65318B-0226-4908-94DE-2BA9DC9C55ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F65318B-0226-4908-94DE-2BA9DC9C55ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
