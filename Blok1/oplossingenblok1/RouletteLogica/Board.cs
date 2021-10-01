@@ -8,6 +8,17 @@ namespace RouletteLogica
         private Number[,] numbers = new Number[3, 12];
         private Number[,] twelveTiles = new Number[3, 12];
 
+        public Board()
+        {
+            NumbersBoardFiller();
+        }
+
+        public Number[,] GetNumbers()
+        {
+            return numbers;
+        }
+
+
         private void NumbersBoardFiller()
         {
             int value = 1;
@@ -15,6 +26,7 @@ namespace RouletteLogica
             {
                 for(int j = 0; j < 12; j++)
                 {
+                    numbers[i,j] = new Number();
                     numbers[i, j].SetValue(value);
                     numbers[i, j].SetColor(GiveColor(value));
                     value++;

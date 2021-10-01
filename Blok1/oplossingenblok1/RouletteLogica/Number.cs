@@ -7,10 +7,16 @@ using System.Drawing;
 
 namespace RouletteLogica
 {
-    class Number
+    public class Number
     {
         private Color color;
         private int value;
+
+        public Number()
+        {
+            this.color = Color.Blue;
+            this.value = -1;
+        }
         
         public void SetColor(Color color)
         {
