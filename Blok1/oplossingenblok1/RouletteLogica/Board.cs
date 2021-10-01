@@ -6,11 +6,13 @@ namespace RouletteLogica
     public class Board
     {
         private Number[,] numbers = new Number[3, 12];
-        private Number[,] twelveTiles = new Number[3, 12];
+        private Number[,] rightTwelveTiles = new Number[3, 12];
+        private Number[,] bottomTwelveTiles = new Number[3, 12];
 
         public Board()
         {
             NumbersBoardFiller();
+            RightTwelveTileMaker();
         }
 
         public Number[,] GetNumbers()
@@ -18,6 +20,10 @@ namespace RouletteLogica
             return numbers;
         }
 
+        public Number[,] GetRightTwelveTiles()
+        {
+            return rightTwelveTiles;
+        }
 
         private void NumbersBoardFiller()
         {
@@ -62,20 +68,14 @@ namespace RouletteLogica
             return color;
         }
 
-        public void TwelveTileMaker()
+        public void RightTwelveTileMaker()
         {
-            int extraTwelve = 0;
-            for (int k = 0; k < 3; k++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = (0 + extraTwelve); j < (4 + extraTwelve); j++)
-                    {
-                        twelveTiles[k, j] = numbers[i, j];
-                    }
-                }
-                extraTwelve += 12;
-            }
+            rightTwelveTiles = numbers;
+        }
+
+        public void BottomTwelveTileMaker()
+        {
+
         }
     }
 }

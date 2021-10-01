@@ -16,10 +16,11 @@ namespace RouletteConsole
 
         public void Run()
         {
-            DrawBoard();
+            DrawNumbers();
+            DrawRightTwelveTiles();
         }
 
-        private void DrawBoard()
+        private void DrawNumbers()
         {
             int[] dimLength = GetDimLength();
             string boarder = GiveBoarder(dimLength);
@@ -74,13 +75,27 @@ namespace RouletteConsole
             return numberLine;
         }
 
-        private string AddSpacesNumberLine(string numberLine)
+        private void DrawRightTwelveTiles()
         {
-            while (numberLine.Length < 10)
+            Number[,] rightTwelveTiles = board.GetRightTwelveTiles();
+            int rank = board.GetRightTwelveTiles().Rank;
+            int[] dimLength = new int[rank];
+            for (int i = 0; i < rank; i++)
             {
-                numberLine += " ";
+                dimLength[i] = board.GetNumbers().GetLength(i);
             }
-            return numberLine;
+            string numberSec = "";
+            for (int i = 0; i < dimLength[0]; i++)
+            {
+                Console.WriteLine(rightTwelveTiles[i, 0].GetValue() + "-" + rightTwelveTiles[i, dimLength[1] - 1].GetValue());
+                for (int j = 0; j < dimLength[1]; j++)
+                {
+                    numberSec += rightTwelveTiles[i, j].GetValue() + ",";
+                }
+                Console.WriteLine(numberSec);
+                numberSec = "";
+            }
+
         }
     }
 }
