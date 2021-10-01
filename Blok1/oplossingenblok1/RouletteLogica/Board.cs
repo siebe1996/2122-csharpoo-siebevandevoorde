@@ -22,9 +22,9 @@ namespace RouletteLogica
         private void NumbersBoardFiller()
         {
             int value = 1;
-            for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 12; j++) 
             {
-                for(int j = 0; j < 12; j++)
+                for(int i = 2; i >= 0; i--)
                 {
                     numbers[i,j] = new Number();
                     numbers[i, j].SetValue(value);

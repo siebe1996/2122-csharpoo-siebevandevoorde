@@ -30,6 +30,11 @@ namespace RouletteLogica
             }
         }
 
+        public Color GetColor()
+        {
+            return color;
+        }
+        
         public void SetValue(int value)
         {
             if (value < 1 || value > 36)
@@ -40,6 +45,11 @@ namespace RouletteLogica
             {
                 this.value = value;
             }
+        }
+
+        public int GetValue()
+        {
+            return value;
         }
     }
 }
