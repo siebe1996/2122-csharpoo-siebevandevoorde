@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace RouletteLogica
 {
     public class Board
     {
         private Number[,] numbers = new Number[3, 12];
-        private Number[,] rightTwelveTiles = new Number[3, 12];
-        private Number[,] bottomTwelveTiles = new Number[3, 12];
+        private Tile[] rightTwelveTiles = new Tile[3];
 
         public Board()
         {
@@ -20,7 +20,7 @@ namespace RouletteLogica
             return numbers;
         }
 
-        public Number[,] GetRightTwelveTiles()
+        public Tile[] GetRightTwelveTiles()
         {
             return rightTwelveTiles;
         }
@@ -70,12 +70,15 @@ namespace RouletteLogica
 
         public void RightTwelveTileMaker()
         {
-            rightTwelveTiles = numbers;
-        }
-
-        public void BottomTwelveTileMaker()
-        {
-
+            for (int i = 0; i < 3; i++)
+            {
+                rightTwelveTiles[i] = new Tile();
+                for (int j = 0; j < 12; j++)
+                {
+                    rightTwelveTiles[i].AddNumber(numbers[i, j]);
+                    //Console.WriteLine(rightTwelveTiles[i].GetNumber(j).GetValue());
+                }
+            }
         }
     }
 }

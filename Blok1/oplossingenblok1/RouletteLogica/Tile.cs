@@ -6,8 +6,27 @@ using System.Threading.Tasks;
 
 namespace RouletteLogica
 {
-    class Tile
+    public class Tile
     {
         private List<Number> numbers = new List<Number>();
+
+        public Tile()
+        {
+
+        }
+        public void AddNumber(Number number)
+        {
+            numbers.Add(number);
+        }
+
+        public Number GetNumber(int index)
+        {
+            return numbers[index];
+        }
+
+        public int Size()
+        {
+            return numbers.Count;
+        }
     }
 }

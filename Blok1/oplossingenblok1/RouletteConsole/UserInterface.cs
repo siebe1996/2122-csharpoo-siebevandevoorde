@@ -17,7 +17,6 @@ namespace RouletteConsole
         public void Run()
         {
             DrawNumbers();
-            DrawRightTwelveTiles();
         }
 
         private void DrawNumbers()
@@ -52,6 +51,7 @@ namespace RouletteConsole
             {
                 boarder += "---------|";
             }
+            boarder += "------|";
             return boarder;
         }
 
@@ -71,30 +71,17 @@ namespace RouletteConsole
                 }
                 numberLine += "|";
             }
-
+            numberLine += GiveRightTwelveTiles(lineNumber);
             return numberLine;
         }
 
-        private void DrawRightTwelveTiles()
+        private string GiveRightTwelveTiles(int lineNumber)
         {
-            Number[,] rightTwelveTiles = board.GetRightTwelveTiles();
-            int rank = board.GetRightTwelveTiles().Rank;
-            int[] dimLength = new int[rank];
-            for (int i = 0; i < rank; i++)
-            {
-                dimLength[i] = board.GetNumbers().GetLength(i);
-            }
-            string numberSec = "";
-            for (int i = 0; i < dimLength[0]; i++)
-            {
-                Console.WriteLine(rightTwelveTiles[i, 0].GetValue() + "-" + rightTwelveTiles[i, dimLength[1] - 1].GetValue());
-                for (int j = 0; j < dimLength[1]; j++)
-                {
-                    numberSec += rightTwelveTiles[i, j].GetValue() + ",";
-                }
-                Console.WriteLine(numberSec);
-                numberSec = "";
-            }
+            Tile[] rightTwelveTiles = board.GetRightTwelveTiles();
+            string rightTwelveTile = "";
+            rightTwelveTile = string.Format("{0,0}-{1,-4}", rightTwelveTiles[lineNumber].GetNumber(0).GetValue().ToString(), rightTwelveTiles[lineNumber].GetNumber(rightTwelveTiles[lineNumber].Size() - 1).GetValue().ToString());
+            rightTwelveTile += "|";
+            return rightTwelveTile;
 
         }
     }
