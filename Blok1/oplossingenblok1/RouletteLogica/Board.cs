@@ -10,6 +10,7 @@ namespace RouletteLogica
         private Tile[] rightTwelveTiles = new Tile[3];
         private Tile[] bottomTwelveTiles = new Tile[3];
         private Tile[] eightTeenTiles = new Tile[2];
+        private Tile[] evenOddTiles = new Tile[2];
 
         public Board()
         {
@@ -36,6 +37,11 @@ namespace RouletteLogica
         public Tile[] GetEightTeenTiles()
         {
             return eightTeenTiles;
+        }
+
+        public Tile[] GetEvenOddTiles()
+        {
+            return evenOddTiles;
         }
 
         private void NumbersBoardFiller()
@@ -98,12 +104,14 @@ namespace RouletteLogica
             int value = 1;
             TileInitializer(bottomTwelveTiles);
             TileInitializer(eightTeenTiles);
+            TileInitializer(evenOddTiles);
             for (int j = 0; j < 12; j++) 
             {
                 for(int i = 2; i >= 0; i--)
                 {
                     BottomTwelveTileMaker(value, i, j);
                     EightTeenTileMaker(value, i, j);
+                    EvenOddTileMaker(value, i, j);
                     value++;
                 }
             }
@@ -134,6 +142,18 @@ namespace RouletteLogica
             else
             {
                 eightTeenTiles[1].AddNumber(numbers[row, column]);
+            }
+        }
+
+        public void EvenOddTileMaker(int value, int row, int column)
+        {
+            if (value % 2 == 0)
+            {
+                evenOddTiles[0].AddNumber(numbers[row, column]);
+            }
+            else
+            {
+                evenOddTiles[1].AddNumber(numbers[row, column]);
             }
         }
 
