@@ -11,6 +11,7 @@ namespace RouletteLogica
         private Tile[] bottomTwelveTiles = new Tile[3];
         private Tile[] eightTeenTiles = new Tile[2];
         private Tile[] evenOddTiles = new Tile[2];
+        private Tile[] redBlackTiles = new Tile[2];
 
         public Board()
         {
@@ -42,6 +43,11 @@ namespace RouletteLogica
         public Tile[] GetEvenOddTiles()
         {
             return evenOddTiles;
+        }
+
+        public Tile[] GetRedBlackTiles()
+        {
+            return redBlackTiles;
         }
 
         private void NumbersBoardFiller()
@@ -105,6 +111,7 @@ namespace RouletteLogica
             TileInitializer(bottomTwelveTiles);
             TileInitializer(eightTeenTiles);
             TileInitializer(evenOddTiles);
+            TileInitializer(redBlackTiles);
             for (int j = 0; j < 12; j++) 
             {
                 for(int i = 2; i >= 0; i--)
@@ -112,6 +119,7 @@ namespace RouletteLogica
                     BottomTwelveTileMaker(value, i, j);
                     EightTeenTileMaker(value, i, j);
                     EvenOddTileMaker(value, i, j);
+                    RedBlackTileMaker(i, j);
                     value++;
                 }
             }
@@ -154,6 +162,18 @@ namespace RouletteLogica
             else
             {
                 evenOddTiles[1].AddNumber(numbers[row, column]);
+            }
+        }
+
+        public void RedBlackTileMaker(int row, int column)
+        {
+            if (new MyColor(numbers[row, column].GetColor()).ToString().Equals("Red"))
+            {
+                redBlackTiles[0].AddNumber(numbers[row, column]);
+            }
+            else 
+            {
+                redBlackTiles[1].AddNumber(numbers[row, column]);
             }
         }
 

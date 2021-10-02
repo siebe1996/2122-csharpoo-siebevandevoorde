@@ -45,8 +45,11 @@ namespace RouletteConsole
 
         private void DrawLastRow()
         {
+            int[] dimLength = GetDimLength();
             Console.Write(GiveEightTeenTiles());
-            Console.WriteLine(GiveEvenOddTiles());
+            Console.Write(GiveEvenOddTiles());
+            Console.WriteLine(GiveRedBlackTiles());
+            Console.WriteLine(GiveBoarder(dimLength));
         }
 
         private int[] GetDimLength()
@@ -142,6 +145,26 @@ namespace RouletteConsole
                 numberSeq = "";*/
             }
             return evenOddTile;
+        }
+
+        private string GiveRedBlackTiles()
+        {
+            Tile[] redBlackTiles = board.GetRedBlackTiles();
+            string[] words = { "Red", "Black", "" };
+            string redBlackTile = "";
+            //string numberSeq =  "";
+            for (int i = 0; i < redBlackTiles.Length; i++)
+            {
+                redBlackTile += string.Format("{0,11}{1,-8}", words[i], words[2]);
+                redBlackTile += "|";
+                /*for(int j = 0; j < redBlackTiles[i].Size(); j++)
+                {
+                    numberSeq += new MyColor(redBlackTiles[i].GetNumber(j).GetColor()).ToString() + ",";
+                }
+                Console.WriteLine(numberSeq);
+                numberSeq = "";*/
+            }
+            return redBlackTile;
         }
     }
 }
