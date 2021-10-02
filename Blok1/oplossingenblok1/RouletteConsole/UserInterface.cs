@@ -17,12 +17,15 @@ namespace RouletteConsole
         public void Run()
         {
             DrawNumbers();
+            DrawBottomTwelveTiles();
+            DrawLastRow();
         }
 
         private void DrawNumbers()
         {
             int[] dimLength = GetDimLength();
             string boarder = GiveBoarder(dimLength);
+            boarder += "------|";
             String numberLine = "";
             for (int i = 0; i < dimLength[0]; i++)
             {
@@ -31,6 +34,18 @@ namespace RouletteConsole
                 Console.WriteLine(numberLine);
             }
             Console.WriteLine(boarder);
+        }
+
+        private void DrawBottomTwelveTiles()
+        {
+            int[] dimLength = GetDimLength();
+            Console.WriteLine(GiveBottomTwelveTiles());
+            Console.WriteLine(GiveBoarder(dimLength));
+        }
+
+        private void DrawLastRow()
+        {
+            Console.WriteLine(GiveEightTeenTiles());
         }
 
         private int[] GetDimLength()
@@ -51,7 +66,6 @@ namespace RouletteConsole
             {
                 boarder += "---------|";
             }
-            boarder += "------|";
             return boarder;
         }
 
@@ -83,6 +97,30 @@ namespace RouletteConsole
             rightTwelveTile += "|";
             return rightTwelveTile;
 
+        }
+
+        private string GiveBottomTwelveTiles()
+        {
+            Tile[] bottomTwelveTiles = board.GetBottomTwelveTiles();
+            string bottomTwelveTile = "|";
+            for (int i = 0; i < bottomTwelveTiles.Length; i++)
+            {
+                bottomTwelveTile += string.Format("{0,19}-{1,-19}", bottomTwelveTiles[i].GetNumber(0).GetValue().ToString(), bottomTwelveTiles[i].GetNumber(bottomTwelveTiles[i].Size() - 1).GetValue().ToString());
+                bottomTwelveTile += "|";
+            }
+            return bottomTwelveTile;
+        }
+
+        private string GiveEightTeenTiles()
+        {
+            Tile[] eightTeenTiles = board.GetEightTeenTiles();
+            string eightTeenTile = "|";
+            for (int i = 0; i < eightTeenTiles.Length; i++)
+            {
+                eightTeenTile += string.Format("{0,9}-{1,-9}", eightTeenTiles[i].GetNumber(0).GetValue().ToString(), eightTeenTiles[i].GetNumber(eightTeenTiles[i].Size() - 1).GetValue().ToString());
+                eightTeenTile += "|";
+            }
+            return eightTeenTile;
         }
     }
 }

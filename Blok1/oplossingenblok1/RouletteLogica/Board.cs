@@ -8,11 +8,14 @@ namespace RouletteLogica
     {
         private Number[,] numbers = new Number[3, 12];
         private Tile[] rightTwelveTiles = new Tile[3];
+        private Tile[] bottomTwelveTiles = new Tile[3];
+        private Tile[] eightTeenTiles = new Tile[2];
 
         public Board()
         {
             NumbersBoardFiller();
             RightTwelveTileMaker();
+            RunningOverAllNumbers();
         }
 
         public Number[,] GetNumbers()
@@ -23,6 +26,16 @@ namespace RouletteLogica
         public Tile[] GetRightTwelveTiles()
         {
             return rightTwelveTiles;
+        }
+
+        public Tile[] GetBottomTwelveTiles()
+        {
+            return bottomTwelveTiles;
+        }
+
+        public Tile[] GetEightTeenTiles()
+        {
+            return eightTeenTiles;
         }
 
         private void NumbersBoardFiller()
@@ -70,14 +83,65 @@ namespace RouletteLogica
 
         public void RightTwelveTileMaker()
         {
+            TileInitializer(rightTwelveTiles);
             for (int i = 0; i < 3; i++)
             {
-                rightTwelveTiles[i] = new Tile();
                 for (int j = 0; j < 12; j++)
                 {
                     rightTwelveTiles[i].AddNumber(numbers[i, j]);
-                    //Console.WriteLine(rightTwelveTiles[i].GetNumber(j).GetValue());
                 }
+            }
+        }
+
+        public void RunningOverAllNumbers()
+        {
+            int value = 1;
+            TileInitializer(bottomTwelveTiles);
+            TileInitializer(eightTeenTiles);
+            for (int j = 0; j < 12; j++) 
+            {
+                for(int i = 2; i >= 0; i--)
+                {
+                    BottomTwelveTileMaker(value, i, j);
+                    EightTeenTileMaker(value, i, j);
+                    value++;
+                }
+            }
+        }
+
+        public void BottomTwelveTileMaker(int value, int row, int column)
+        {
+            if (value < 13)
+            {
+                bottomTwelveTiles[0].AddNumber(numbers[row, column]);
+            }
+            else if (value > 24)
+            {
+                bottomTwelveTiles[2].AddNumber(numbers[row, column]);
+            }
+            else
+            {
+                bottomTwelveTiles[1].AddNumber(numbers[row, column]);
+            }
+        }
+
+        public void EightTeenTileMaker(int value, int row, int column)
+        {
+            if (value < 19)
+            {
+                eightTeenTiles[0].AddNumber(numbers[row, column]);
+            }
+            else
+            {
+                eightTeenTiles[1].AddNumber(numbers[row, column]);
+            }
+        }
+
+        public void TileInitializer(Tile[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = new Tile();
             }
         }
     }
