@@ -7,6 +7,7 @@ namespace RouletteLogica
     public class Board
     {
         private Number[,] numbers = new Number[3, 12];
+        private Tile[] numberTiles = new Tile[36];
         private Tile[] rightTwelveTiles = new Tile[3];
         private Tile[] bottomTwelveTiles = new Tile[3];
         private Tile[] eightTeenTiles = new Tile[2];
@@ -23,6 +24,11 @@ namespace RouletteLogica
         public Number[,] GetNumbers()
         {
             return numbers;
+        }
+
+        public Tile[] GetNumberTiles()
+        {
+            return numberTiles;
         }
 
         public Tile[] GetRightTwelveTiles()
@@ -95,7 +101,7 @@ namespace RouletteLogica
 
         public void RightTwelveTileMaker()
         {
-            TileInitializer(rightTwelveTiles);
+            TileInitializer(rightTwelveTiles, 3);
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 12; j++)
@@ -108,14 +114,16 @@ namespace RouletteLogica
         public void RunningOverAllNumbers()
         {
             int value = 1;
-            TileInitializer(bottomTwelveTiles);
-            TileInitializer(eightTeenTiles);
-            TileInitializer(evenOddTiles);
-            TileInitializer(redBlackTiles);
+            TileInitializer(numberTiles, 36);
+            TileInitializer(bottomTwelveTiles, 3);
+            TileInitializer(eightTeenTiles, 2);
+            TileInitializer(evenOddTiles, 2);
+            TileInitializer(redBlackTiles, 2);
             for (int j = 0; j < 12; j++) 
             {
                 for(int i = 2; i >= 0; i--)
                 {
+                    numberTiles[value - 1].AddNumber(numbers[i, j]);
                     BottomTwelveTileMaker(value, i, j);
                     EightTeenTileMaker(value, i, j);
                     EvenOddTileMaker(value, i, j);
@@ -177,11 +185,11 @@ namespace RouletteLogica
             }
         }
 
-        public void TileInitializer(Tile[] array)
+        public void TileInitializer(Tile[] array, int multiplier)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = new Tile();
+                array[i] = new Tile(multiplier);
             }
         }
     }

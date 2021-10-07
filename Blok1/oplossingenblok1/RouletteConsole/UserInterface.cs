@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RouletteLogica;
 
 namespace RouletteConsole
@@ -26,12 +27,15 @@ namespace RouletteConsole
             int[] dimLength = GetDimLength();
             string boarder = GiveBoarder(dimLength);
             boarder += "------|";
-            String numberLine = "";
+            string numberLine = "";
+            int extraTwelve = 0;
             for (int i = 0; i < dimLength[0]; i++)
             {
                 Console.WriteLine(boarder);
                 numberLine = GiveNumberline(dimLength, i);
+                //numberLine = GiveNumberline(extraTwelve, i);//testcode
                 Console.WriteLine(numberLine);
+                // extraTwelve += 12;//testcode
             }
             Console.WriteLine(boarder);
         }
@@ -79,7 +83,7 @@ namespace RouletteConsole
             Number[,] numbers = board.GetNumbers();
             for (int j = 0; j < dimLength[1]; j++)
             {
-                if(numbers[lineNumber, j].GetValue() < 10)
+                if (numbers[lineNumber, j].GetValue() < 10)
                 {
                     numberLine += string.Format("{0,0}/{1,-7}", numbers[lineNumber, j].GetValue().ToString(), new MyColor(numbers[lineNumber, j].GetColor()).ToString());
                 }
@@ -92,6 +96,29 @@ namespace RouletteConsole
             numberLine += GiveRightTwelveTiles(lineNumber);
             return numberLine;
         }
+
+        //testcode
+        /*fout bij tekenen
+        private string GiveNumberline(int extraTwelve, int lineNumber)
+        {
+            String numberLine = "|";
+            Tile[] numberTiles = board.GetNumberTiles();
+            for (int j = 0 + extraTwelve; j < 12 + extraTwelve; j++)
+            {
+                if (numberTiles[j].GetNumber(0).GetValue() < 10)
+                {
+                    numberLine += string.Format("{0,0}/{1,-7}", numberTiles[j].GetNumber(0).GetValue().ToString(), new MyColor(numberTiles[j].GetNumber(0).GetColor()).ToString());
+                }
+                else
+                {
+                    numberLine += string.Format("{0,0}/{1,-6}", numberTiles[j].GetNumber(0).GetValue().ToString(), new MyColor(numberTiles[j].GetNumber(0).GetColor()).ToString());
+                }
+                numberLine += "|";
+            }
+            numberLine += GiveRightTwelveTiles(lineNumber);
+            return numberLine;
+        }*/
+
 
         private string GiveRightTwelveTiles(int lineNumber)
         {
@@ -130,12 +157,12 @@ namespace RouletteConsole
         private string GiveEvenOddTiles()
         {
             Tile[] evenOddTiles = board.GetEvenOddTiles();
-            string[] words = { "even", "odd", ""};
+            string[] words = { "even", "odd", "" };
             string evenOddTile = "";
             //string numberSeq =  "";
             for (int i = 0; i < evenOddTiles.Length; i++)
             {
-                evenOddTile+= string.Format("{0,11}{1,-8}", words[i], words[2]);
+                evenOddTile += string.Format("{0,11}{1,-8}", words[i], words[2]);
                 evenOddTile += "|";
                 /*for(int j = 0; j < evenOddTiles[i].Size(); j++)
                 {
@@ -165,6 +192,66 @@ namespace RouletteConsole
                 numberSeq = "";*/
             }
             return redBlackTile;
+        }
+
+        private void StartQuestion()
+        {
+            Console.WriteLine("Wil je op een nummer of een speciale tegel inzetten?");
+            Console.WriteLine("type 1 voor nummer en 2 voor speciale tegel.");
+            ReadInputStart();
+        }
+
+        private void ReadInputStart()
+        {
+            string input1 = string.Empty;
+            input1 = Console.ReadLine();
+            if (input1.Equals("1"))
+            {
+                NumberQuestion();
+            }
+            else if (input1.Equals("2"))
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("geef 1 of 2 in.");
+                StartQuestion();
+            }
+        }
+
+        private void NumberQuestion()
+        {
+            Console.WriteLine("Type op welk nummer je wilt inzetten (1->36)");
+            ReadNumber();
+
+        }
+
+        private void ReadNumber()
+        {
+            int input2 = int.MaxValue;
+            try{
+                input2 = Convert.ToInt32(Console.ReadLine());
+            }
+            catch(InvalidCastException e)
+            {
+                Console.WriteLine("Geef een nummer in");
+                NumberQuestion();
+            }
+            if (input2 > 0 && input2 < 37)
+            {
+                Tile[] numberTiles = board.GetNumberTiles();
+                BetQuestion(numberTiles[input2 - 1]);
+            }
+            else
+            {
+                Console.WriteLine("Geef een geldig nummer in");
+            }
+        }
+
+        private void BetQuestion(Tile tile)
+        {
+            //krijgt een tile en vraagt om een input van een inzet
         }
     }
 }

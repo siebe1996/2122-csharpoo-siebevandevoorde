@@ -9,10 +9,11 @@ namespace RouletteLogica
     public class Tile
     {
         private List<Number> numbers = new List<Number>();
+        private int multiplier;
 
-        public Tile()
+        public Tile(int mutiplier)
         {
-
+            this.multiplier = multiplier;
         }
         public void AddNumber(Number number)
         {
