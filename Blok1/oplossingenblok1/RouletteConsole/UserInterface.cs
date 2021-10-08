@@ -9,10 +9,12 @@ namespace RouletteConsole
     {
 
         private readonly Board board;
+        private Player player;
 
         public UserInterface()
         {
             board = new Board();
+            player = new Player("dummy", 100);
         }
 
         public void Run()
@@ -20,6 +22,7 @@ namespace RouletteConsole
             DrawNumbers();
             DrawBottomTwelveTiles();
             DrawLastRow();
+            StartQuestion();
         }
 
         private void DrawNumbers()
@@ -252,6 +255,36 @@ namespace RouletteConsole
         private void BetQuestion(Tile tile)
         {
             //krijgt een tile en vraagt om een input van een inzet
+            Console.WriteLine("hoeveel wil je inzetten?");
+            ReadBet(tile);
+        }
+
+        private void ReadBet(Tile tile)
+        {
+            int input2 = int.MaxValue;
+            try
+            {
+                input2 = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Geef een nummer in");
+                BetQuestion(tile);
+            }
+            try
+            {
+                player.PlaceBet(tile, input2);
+            }
+            catch(ArgumentException e)
+            {
+                Console.WriteLine(e);
+                BetQuestion(tile);
+            }
+        }
+
+        private void Roll()
+        {
+
         }
     }
 }

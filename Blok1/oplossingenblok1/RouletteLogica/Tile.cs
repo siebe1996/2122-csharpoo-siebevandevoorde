@@ -11,7 +11,7 @@ namespace RouletteLogica
         private List<Number> numbers = new List<Number>();
         private int multiplier;
 
-        public Tile(int mutiplier)
+        public Tile(int multiplier)
         {
             this.multiplier = multiplier;
         }

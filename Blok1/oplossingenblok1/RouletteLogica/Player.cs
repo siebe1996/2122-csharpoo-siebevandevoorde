@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RouletteLogica
 {
@@ -19,10 +20,17 @@ namespace RouletteLogica
             this.capital = capital;
         }
 
-        private void PlaceBet(Tile tile, int bet)
+        public void PlaceBet(Tile tile, int bet)
         {
-            bets.Add(tile, bet);
-            capital -= bet;
+            if (bet <= capital)
+            {
+                bets.Add(tile, bet);
+                capital -= bet;
+            }
+            else
+            {
+                throw new ArgumentException("Je inzet kan niet groter zijn dan je kapitaal, inzet: "+bet+", kapitaal: "+capital);
+            }
         }
     }
 }
