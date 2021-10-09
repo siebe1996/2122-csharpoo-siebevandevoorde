@@ -269,7 +269,7 @@ namespace RouletteConsole
                     EvenOddTileQuestion();
                     break;
                 case 5:
-                    //functioon
+                    RedBlackTileQuestion();
                     break;
             }
         }
@@ -298,13 +298,17 @@ namespace RouletteConsole
             ReadEvenOddTile();
         }
 
+        private void RedBlackTileQuestion()
+        {
+            Console.WriteLine("type 1 voor rood, 2 voor zwart");
+            ReadRedBlackTile();
+        }
+
         private void ReadNumber()
         {
             int input2 = int.MaxValue;
-            try{
-                input2 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch(InvalidCastException e)
+            string input2Str = Console.ReadLine();
+            if (!int.TryParse(input2Str, out input2))
             {
                 Console.WriteLine("Geef een nummer in");
                 NumberQuestion();
@@ -324,11 +328,8 @@ namespace RouletteConsole
         private void ReadRightTwelveTile()
         {
             int input3 = int.MaxValue;
-            try
-            {
-                input3 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (InvalidCastException e)
+            string input3Str = Console.ReadLine();
+            if (!int.TryParse(input3Str, out input3))
             {
                 Console.WriteLine("Geef een nummer in");
                 RightTwelveTileQuestion();
@@ -349,11 +350,8 @@ namespace RouletteConsole
         private void ReadBottomTwelveTile()
         {
             int input3 = int.MaxValue;
-            try
-            {
-                input3 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (InvalidCastException e)
+            string input3Str = Console.ReadLine();
+            if (!int.TryParse(input3Str, out input3))
             {
                 Console.WriteLine("Geef een nummer in");
                 BottomTwelveTileQuestion();
@@ -374,11 +372,8 @@ namespace RouletteConsole
         private void ReadEightTeenTile()
         {
             int input3 = int.MaxValue;
-            try
-            {
-                input3 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (InvalidCastException e)
+            string input3Str = Console.ReadLine();
+            if (!int.TryParse(input3Str, out input3))
             {
                 Console.WriteLine("Geef een nummer in");
                 EightTeenTileQuestion();
@@ -399,11 +394,8 @@ namespace RouletteConsole
         private void ReadEvenOddTile()
         {
             int input3 = int.MaxValue;
-            try
-            {
-                input3 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (InvalidCastException e)
+            string input3Str = Console.ReadLine();
+            if (!int.TryParse(input3Str, out input3))
             {
                 Console.WriteLine("Geef een nummer in");
                 EvenOddTileQuestion();
@@ -421,6 +413,28 @@ namespace RouletteConsole
             }
         }
 
+        private void ReadRedBlackTile()
+        {
+            int input3 = int.MaxValue;
+            string input3Str = Console.ReadLine();
+            if (!int.TryParse(input3Str, out input3))
+            {
+                Console.WriteLine("Geef een nummer in");
+                RedBlackTileQuestion();
+            }
+            if (input3 > 0 && input3 < 3)
+            {
+                Tile[] RedBlackTiles = board.GetRedBlackTiles();
+                Console.WriteLine(RedBlackTiles[input3 - 1]); //testcode
+                BetQuestion(RedBlackTiles[input3 - 1]);
+            }
+            else
+            {
+                Console.WriteLine("Geef een geldig nummer in");
+                RedBlackTileQuestion();
+            }
+        }
+
         private void BetQuestion(Tile tile)
         {
             //krijgt een tile en vraagt om een input van een inzet
@@ -431,11 +445,8 @@ namespace RouletteConsole
         private void ReadBet(Tile tile)
         {
             int input4 = int.MaxValue;
-            try
-            {
-                input4 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (InvalidCastException e)
+            string input4Str = Console.ReadLine();
+            if (!int.TryParse(input4Str, out input4))
             {
                 Console.WriteLine("Geef een inzet in");
                 BetQuestion(tile);
