@@ -487,20 +487,20 @@ namespace RouletteConsole
             board.WinningTileMaker(outcome);
             foreach(Tile winningTile in board.WinningTiles)
             {
-                if (player.GetBets().ContainsKey(winningTile))
+                if (player.Bets.ContainsKey(winningTile))
                 {
-                    player.AddWinning(player.GetBets()[winningTile] * winningTile.Multiplier);
+                    player.AddWinning(player.Bets[winningTile] * winningTile.Multiplier);
                     PrintWiningAndPlayerInfo(winningTile);
                 }
             }
-            player.GetBets().Clear();
+            player.Bets.Clear();
             board.WinningTiles.Clear();
             PlayAgainQuestion();
         }
 
         private void PrintWiningAndPlayerInfo(Tile winningTile)
         {
-            Console.WriteLine("je hebt " + player.GetBets()[winningTile] + " ingezet op " + winningTile+", je hebt "+(player.GetBets()[winningTile] * winningTile.Multiplier)+" gewonnen");
+            Console.WriteLine("je hebt " + player.Bets[winningTile] + " ingezet op " + winningTile+", je hebt "+(player.Bets[winningTile] * winningTile.Multiplier)+" gewonnen");
         }
 
         private void PlayAgainQuestion()

@@ -7,7 +7,7 @@ namespace RouletteLogica
     {
         private string name;
         private int capital;
-        private Dictionary <Tile, int> bets = new Dictionary <Tile, int>();
+        public Dictionary<Tile, int> Bets { get; } = new Dictionary<Tile, int>();
 
 
         public Player() : this("dummy", 100)
@@ -24,18 +24,13 @@ namespace RouletteLogica
         {
             if (bet <= capital)
             {
-                bets.Add(tile, bet);
+                Bets.Add(tile, bet);
                 capital -= bet;
             }
             else
             {
                 throw new ArgumentException("Je inzet kan niet groter zijn dan je kapitaal, inzet: "+bet+", kapitaal: "+capital);
             }
-        }
-
-        public Dictionary<Tile, int> GetBets()
-        {
-            return bets;
         }
 
         public void AddWinning(int winning)
