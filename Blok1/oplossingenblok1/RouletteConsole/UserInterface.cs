@@ -489,7 +489,7 @@ namespace RouletteConsole
             {
                 if (player.GetBets().ContainsKey(winningTile))
                 {
-                    player.AddWinning(player.GetBets()[winningTile] * winningTile.GetMultiplier());
+                    player.AddWinning(player.GetBets()[winningTile] * winningTile.Multiplier);
                     PrintWiningAndPlayerInfo(winningTile);
                 }
             }
@@ -500,7 +500,7 @@ namespace RouletteConsole
 
         private void PrintWiningAndPlayerInfo(Tile winningTile)
         {
-            Console.WriteLine("je hebt " + player.GetBets()[winningTile] + " ingezet op " + winningTile+", je hebt "+(player.GetBets()[winningTile] * winningTile.GetMultiplier())+" gewonnen");
+            Console.WriteLine("je hebt " + player.GetBets()[winningTile] + " ingezet op " + winningTile+", je hebt "+(player.GetBets()[winningTile] * winningTile.Multiplier)+" gewonnen");
         }
 
         private void PlayAgainQuestion()
