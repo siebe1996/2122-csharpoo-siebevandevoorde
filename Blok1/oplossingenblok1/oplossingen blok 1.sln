@@ -9,10 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteLogica", "RouletteL
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96A54509-80A7-4B0C-A80B-4666A42CD508}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\C# OO programming files\Feedback.md = ..\..\..\C# OO programming files\Feedback.md
+		..\..\Feedback.md = ..\..\Feedback.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteConsole", "RouletteConsole\RouletteConsole.csproj", "{A05EEB88-8CAB-4BBF-8993-1EAC706C6CE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteConsole", "RouletteConsole\RouletteConsole.csproj", "{A05EEB88-8CAB-4BBF-8993-1EAC706C6CE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
