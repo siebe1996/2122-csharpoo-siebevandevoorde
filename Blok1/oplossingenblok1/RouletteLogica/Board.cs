@@ -113,9 +113,9 @@ namespace RouletteLogica
                 for (int j = 0; j < 12; j++)
                 {
                     rightTwelveTiles[i].AddNumber(numbers[i, j]);
-                    Console.Write(numbers[i, j] + ", ");
+                    //Console.Write(numbers[i, j] + ", "); //testcode
                 }
-                Console.WriteLine();
+                //Console.WriteLine(); //testcode
             }
         }
 
@@ -141,9 +141,9 @@ namespace RouletteLogica
                 }
             }
             /*Console.WriteLine();
-            foreach (Tile numberTile in numberTiles)
+            foreach (Tile tile in eightTeenTiles)
             {
-                Console.WriteLine(numberTile);
+                Console.WriteLine(tile);
             }*/
         }
 
