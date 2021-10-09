@@ -72,11 +72,11 @@ namespace RouletteConsole
 
         private int[] GetDimLength()
         {
-            int rank = board.GetNumbers().Rank;
+            int rank = board.Numbers.Rank;
             int[] dimLength = new int[rank];
             for (int i = 0; i < rank; i++)
             {
-                dimLength[i] = board.GetNumbers().GetLength(i);
+                dimLength[i] = board.Numbers.GetLength(i);
             }
             return dimLength;
         }
@@ -94,7 +94,7 @@ namespace RouletteConsole
         private string GiveNumberline(int[] dimLength, int lineNumber)
         {
             String numberLine = "|";
-            Number[,] numbers = board.GetNumbers();
+            Number[,] numbers = board.Numbers;
             for (int j = 0; j < dimLength[1]; j++)
             {
                 if (numbers[lineNumber, j].GetValue() < 10)
@@ -136,7 +136,7 @@ namespace RouletteConsole
 
         private string GiveRightTwelveTiles(int lineNumber)
         {
-            Tile[] rightTwelveTiles = board.GetRightTwelveTiles();
+            Tile[] rightTwelveTiles = board.RightTwelveTiles;
             string rightTwelveTile = "";
             rightTwelveTile = string.Format("{0,0}-{1,-4}", rightTwelveTiles[lineNumber].GetNumber(0).GetValue().ToString(), rightTwelveTiles[lineNumber].GetNumber(rightTwelveTiles[lineNumber].Size() - 1).GetValue().ToString());
             rightTwelveTile += "|";
@@ -146,7 +146,7 @@ namespace RouletteConsole
 
         private string GiveBottomTwelveTiles()
         {
-            Tile[] bottomTwelveTiles = board.GetBottomTwelveTiles();
+            Tile[] bottomTwelveTiles = board.BottomTwelveTiles;
             string bottomTwelveTile = "|";
             for (int i = 0; i < bottomTwelveTiles.Length; i++)
             {
@@ -158,7 +158,7 @@ namespace RouletteConsole
 
         private string GiveEightTeenTiles()
         {
-            Tile[] eightTeenTiles = board.GetEightTeenTiles();
+            Tile[] eightTeenTiles = board.EightTeenTiles;
             string eightTeenTile = "|";
             for (int i = 0; i < eightTeenTiles.Length; i++)
             {
@@ -170,7 +170,7 @@ namespace RouletteConsole
 
         private string GiveEvenOddTiles()
         {
-            Tile[] evenOddTiles = board.GetEvenOddTiles();
+            Tile[] evenOddTiles = board.EvenOddTiles;
             string[] words = { "even", "odd", "" };
             string evenOddTile = "";
             //string numberSeq =  "";
@@ -190,7 +190,7 @@ namespace RouletteConsole
 
         private string GiveRedBlackTiles()
         {
-            Tile[] redBlackTiles = board.GetRedBlackTiles();
+            Tile[] redBlackTiles = board.RedBlackTiles;
             string[] words = { "Red", "Black", "" };
             string redBlackTile = "";
             //string numberSeq =  "";
@@ -326,7 +326,7 @@ namespace RouletteConsole
             }
             if (input2 > 0 && input2 < 37)
             {
-                Tile[] numberTiles = board.GetNumberTiles();
+                Tile[] numberTiles = board.NumberTiles;
                 BetQuestion(numberTiles[input2 - 1]);
             }
             else
@@ -347,7 +347,7 @@ namespace RouletteConsole
             }
             if (input3 > 0 && input3 < 4)
             {
-                Tile[] RightTwelveTiles = board.GetRightTwelveTiles();
+                Tile[] RightTwelveTiles = board.RightTwelveTiles;
                 //Console.WriteLine(RightTwelveTiles[input3 - 1]); //testcode
                 BetQuestion(RightTwelveTiles[input3 - 1]);
             }
@@ -369,7 +369,7 @@ namespace RouletteConsole
             }
             if (input3 > 0 && input3 < 4)
             {
-                Tile[] BottomTwelveTiles = board.GetBottomTwelveTiles();
+                Tile[] BottomTwelveTiles = board.BottomTwelveTiles;
                 //Console.WriteLine(BottomTwelveTiles[input3 - 1]); //testcode
                 BetQuestion(BottomTwelveTiles[input3 - 1]);
             }
@@ -391,7 +391,7 @@ namespace RouletteConsole
             }
             if (input3 > 0 && input3 < 3)
             {
-                Tile[] EightTeenTiles = board.GetEightTeenTiles();
+                Tile[] EightTeenTiles = board.EightTeenTiles;
                 Console.WriteLine(EightTeenTiles[input3 - 1]);
                 BetQuestion(EightTeenTiles[input3 - 1]);
             }
@@ -413,7 +413,7 @@ namespace RouletteConsole
             }
             if (input3 > 0 && input3 < 3)
             {
-                Tile[] evenOddTiles = board.GetEvenOddTiles();
+                Tile[] evenOddTiles = board.EvenOddTiles;
                 //Console.WriteLine(evenOddTiles[input3 - 1]); //testcode
                 BetQuestion(evenOddTiles[input3 - 1]);
             }
@@ -435,7 +435,7 @@ namespace RouletteConsole
             }
             if (input3 > 0 && input3 < 3)
             {
-                Tile[] RedBlackTiles = board.GetRedBlackTiles();
+                Tile[] RedBlackTiles = board.RedBlackTiles;
                 Console.WriteLine(RedBlackTiles[input3 - 1]); //testcode
                 BetQuestion(RedBlackTiles[input3 - 1]);
             }
@@ -485,7 +485,7 @@ namespace RouletteConsole
             int outcome = 15;
             Console.WriteLine(outcome + " is gerolt");
             board.WinningTileMaker(outcome);
-            foreach(Tile winningTile in board.GetWinningTiles())
+            foreach(Tile winningTile in board.WinningTiles)
             {
                 if (player.GetBets().ContainsKey(winningTile))
                 {
@@ -494,6 +494,7 @@ namespace RouletteConsole
                 }
             }
             player.GetBets().Clear();
+            board.WinningTiles.Clear();
             PlayAgainQuestion();
         }
 
