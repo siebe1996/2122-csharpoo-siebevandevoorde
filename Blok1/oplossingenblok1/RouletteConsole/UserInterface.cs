@@ -392,7 +392,7 @@ namespace RouletteConsole
             if (input3 > 0 && input3 < 3)
             {
                 Tile[] EightTeenTiles = board.EightTeenTiles;
-                Console.WriteLine(EightTeenTiles[input3 - 1]);
+                //Console.WriteLine(EightTeenTiles[input3 - 1]); //testcode
                 BetQuestion(EightTeenTiles[input3 - 1]);
             }
             else
@@ -436,7 +436,7 @@ namespace RouletteConsole
             if (input3 > 0 && input3 < 3)
             {
                 Tile[] RedBlackTiles = board.RedBlackTiles;
-                Console.WriteLine(RedBlackTiles[input3 - 1]); //testcode
+                //Console.WriteLine(RedBlackTiles[input3 - 1]); //testcode
                 BetQuestion(RedBlackTiles[input3 - 1]);
             }
             else
@@ -500,7 +500,7 @@ namespace RouletteConsole
 
         private void PrintWiningAndPlayerInfo(Tile winningTile)
         {
-            Console.WriteLine("je hebt " + player.Bets[winningTile] + " ingezet op " + winningTile+", je hebt "+(player.Bets[winningTile] * winningTile.Multiplier)+" gewonnen");
+            Console.WriteLine($"je hebt {player.Bets[winningTile]} ingezet op {winningTile}, je hebt {(player.Bets[winningTile] * winningTile.Multiplier)} gewonnen");
         }
 
         private void PlayAgainQuestion()

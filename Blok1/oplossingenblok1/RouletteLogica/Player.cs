@@ -29,7 +29,7 @@ namespace RouletteLogica
             }
             else
             {
-                throw new ArgumentException("Je inzet kan niet groter zijn dan je kapitaal, inzet: "+bet+", kapitaal: "+capital);
+                throw new ArgumentException($"Je inzet kan niet groter zijn dan je kapitaal, inzet: {bet}, kapitaal: {capital}");
             }
         }
 
