@@ -51,5 +51,10 @@ namespace RouletteLogica
         {
             return value;
         }
+
+        public override string ToString()
+        {
+            return value+"/"+new MyColor(color);
+        }
     }
 }

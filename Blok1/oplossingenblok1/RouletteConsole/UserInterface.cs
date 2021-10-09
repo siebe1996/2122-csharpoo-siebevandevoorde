@@ -31,7 +31,7 @@ namespace RouletteConsole
             string boarder = GiveBoarder(dimLength);
             boarder += "------|";
             string numberLine = "";
-            int extraTwelve = 0;
+            //int extraTwelve = 0; //testcode
             for (int i = 0; i < dimLength[0]; i++)
             {
                 Console.WriteLine(boarder);
@@ -214,7 +214,7 @@ namespace RouletteConsole
             }
             else if (input1.Equals("2"))
             {
-
+                TileQuestion();
             }
             else
             {
@@ -228,6 +228,62 @@ namespace RouletteConsole
             Console.WriteLine("Type op welk nummer je wilt inzetten (1->36)");
             ReadNumber();
 
+        }
+
+        private void TileQuestion()
+        {
+            Console.WriteLine("Op welk soort tegel wil je inzetten?");
+            Console.WriteLine("Type 1 voor rechter 12 tegels, type 2 voor onder 12 tegels, type 3 voor 18 tegels, type 4 voor even/oneven tegels, type 5 voor rood/zwart");
+            ReadTile();
+        }
+
+        private void ReadTile()
+        {
+            int input2 = int.MaxValue;
+            try
+            {
+                input2 = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Geef een nummer in");
+                TileQuestion();
+            }
+            if (input2 < 1|| input2 > 5)
+            {
+                Console.WriteLine("Geef een nummer tussen 1->5 in");
+                TileQuestion();
+            }
+             switch (input2)
+            {
+                case 1:
+                    RightTwelveTileQuestion();
+                    break;
+                case 2:
+                    BottomTwelveTileQuestion();
+                    break;
+                case 3:
+                    //function
+                    break;
+                case 4:
+                    //function
+                    break;
+                case 5:
+                    //functioon
+                    break;
+            }
+        }
+
+        private void RightTwelveTileQuestion()
+        {
+            Console.WriteLine("type 1 voor de nummers tussen 3->36, 2 voor de nummers tussen 2->35, 3 voor de nummers tussen 1->34");
+            ReadRightTwelveTile();
+        }
+        
+        private void BottomTwelveTileQuestion()
+        {
+            Console.WriteLine("type 1 voor de nummers tussen 1->12, 2 voor de nummers tussen 13->24, 3 voor de nummers tussen 1->36");
+            ReadBottomTwelveTile();
         }
 
         private void ReadNumber()
@@ -249,6 +305,57 @@ namespace RouletteConsole
             else
             {
                 Console.WriteLine("Geef een geldig nummer in");
+                NumberQuestion();
+            }
+        }
+
+        private void ReadRightTwelveTile()
+        {
+            int input3 = int.MaxValue;
+            try
+            {
+                input3 = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Geef een nummer in");
+                RightTwelveTileQuestion();
+            }
+            if (input3 > 0 && input3 < 4)
+            {
+                Tile[] RightTwelveTiles = board.GetRightTwelveTiles();
+                Console.WriteLine(RightTwelveTiles[input3 - 1]);
+                BetQuestion(RightTwelveTiles[input3 - 1]);
+            }
+            else
+            {
+                Console.WriteLine("Geef een geldig nummer in");
+                RightTwelveTileQuestion();
+            }
+        }
+
+        private void ReadBottomTwelveTile()
+        {
+            int input3 = int.MaxValue;
+            try
+            {
+                input3 = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Geef een nummer in");
+                BottomTwelveTileQuestion();
+            }
+            if (input3 > 0 && input3 < 4)
+            {
+                Tile[] BottomTwelveTiles = board.GetBottomTwelveTiles();
+                Console.WriteLine(BottomTwelveTiles[input3 - 1]);
+                BetQuestion(BottomTwelveTiles[input3 - 1]);
+            }
+            else
+            {
+                Console.WriteLine("Geef een geldig nummer in");
+                BottomTwelveTileQuestion();
             }
         }
 
@@ -261,19 +368,20 @@ namespace RouletteConsole
 
         private void ReadBet(Tile tile)
         {
-            int input2 = int.MaxValue;
+            int input4 = int.MaxValue;
             try
             {
-                input2 = Convert.ToInt32(Console.ReadLine());
+                input4 = Convert.ToInt32(Console.ReadLine());
             }
             catch (InvalidCastException e)
             {
-                Console.WriteLine("Geef een nummer in");
+                Console.WriteLine("Geef een inzet in");
                 BetQuestion(tile);
             }
             try
             {
-                player.PlaceBet(tile, input2);
+                player.PlaceBet(tile, input4);
+                CheckWin();
             }
             catch(ArgumentException e)
             {
@@ -282,9 +390,55 @@ namespace RouletteConsole
             }
         }
 
-        private void Roll()
+        private int Roll()
         {
+            return RouletteWheel.Turn();
+        }
 
+        private void CheckWin()
+        {
+            //int outcome = Roll();
+            int outcome = 15;
+            Console.WriteLine(outcome + " is gerolt");
+            board.WinningTileMaker(outcome);
+            foreach(Tile winningTile in board.GetWinningTiles())
+            {
+                if (player.GetBets().ContainsKey(winningTile))
+                {
+                    player.AddWinning(player.GetBets()[winningTile] * winningTile.GetMultiplier());
+                    PrintWiningAndPlayerInfo(winningTile);
+                }
+            }
+            player.GetBets().Clear();
+            PlayAgainQuestion();
+        }
+
+        private void PrintWiningAndPlayerInfo(Tile winningTile)
+        {
+            Console.WriteLine("je hebt " + player.GetBets()[winningTile] + " ingezet op " + winningTile+", je hebt "+(player.GetBets()[winningTile] * winningTile.GetMultiplier())+" gewonnen");
+        }
+
+        private void PlayAgainQuestion()
+        {
+            Console.WriteLine("Wil je nog eens Spelen? [y/n]");
+            PlayAgainRead();
+        }
+
+        private void PlayAgainRead()
+        {
+            string input4 = Console.ReadLine();
+            if (input4.Equals("y"))
+            {
+                StartQuestion();
+            }
+            else if (input4.Equals("n"))
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                PlayAgainQuestion();
+            }
         }
     }
 }

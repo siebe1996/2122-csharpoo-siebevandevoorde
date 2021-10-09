@@ -25,9 +25,31 @@ namespace RouletteLogica
             return numbers[index];
         }
 
+        public int GetMultiplier()
+        {
+            return multiplier;
+        }
+
         public int Size()
         {
             return numbers.Count;
+        }
+
+        public void GetTilesWithNumber(int number)
+        {
+            //rteurn alle tiles die er een tile is met dit nummer return deze tile
+            //if () { }
+        }
+
+        public override string ToString()
+        {
+            string weergave = "{";
+            foreach(Number number in numbers)
+            {
+                weergave += number + ",";
+            }
+            weergave += "} "+multiplier;
+            return weergave;
         }
     }
 }

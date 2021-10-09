@@ -13,6 +13,7 @@ namespace RouletteLogica
         private Tile[] eightTeenTiles = new Tile[2];
         private Tile[] evenOddTiles = new Tile[2];
         private Tile[] redBlackTiles = new Tile[2];
+        private List<Tile> winningTiles = new List<Tile>();
 
         public Board()
         {
@@ -54,6 +55,11 @@ namespace RouletteLogica
         public Tile[] GetRedBlackTiles()
         {
             return redBlackTiles;
+        }
+
+        public List<Tile> GetWinningTiles()
+        {
+            return winningTiles;
         }
 
         private void NumbersBoardFiller()
@@ -99,7 +105,7 @@ namespace RouletteLogica
             return color;
         }
 
-        public void RightTwelveTileMaker()
+        private void RightTwelveTileMaker()
         {
             TileInitializer(rightTwelveTiles, 3);
             for (int i = 0; i < 3; i++)
@@ -107,11 +113,13 @@ namespace RouletteLogica
                 for (int j = 0; j < 12; j++)
                 {
                     rightTwelveTiles[i].AddNumber(numbers[i, j]);
+                    Console.Write(numbers[i, j] + ", ");
                 }
+                Console.WriteLine();
             }
         }
 
-        public void RunningOverAllNumbers()
+        private void RunningOverAllNumbers()
         {
             int value = 1;
             TileInitializer(numberTiles, 36);
@@ -124,6 +132,7 @@ namespace RouletteLogica
                 for(int i = 2; i >= 0; i--)
                 {
                     numberTiles[value - 1].AddNumber(numbers[i, j]);
+                    //Console.Write(value + ", ");
                     BottomTwelveTileMaker(value, i, j);
                     EightTeenTileMaker(value, i, j);
                     EvenOddTileMaker(value, i, j);
@@ -131,9 +140,14 @@ namespace RouletteLogica
                     value++;
                 }
             }
+            /*Console.WriteLine();
+            foreach (Tile numberTile in numberTiles)
+            {
+                Console.WriteLine(numberTile);
+            }*/
         }
 
-        public void BottomTwelveTileMaker(int value, int row, int column)
+        private void BottomTwelveTileMaker(int value, int row, int column)
         {
             if (value < 13)
             {
@@ -149,7 +163,7 @@ namespace RouletteLogica
             }
         }
 
-        public void EightTeenTileMaker(int value, int row, int column)
+        private void EightTeenTileMaker(int value, int row, int column)
         {
             if (value < 19)
             {
@@ -161,7 +175,7 @@ namespace RouletteLogica
             }
         }
 
-        public void EvenOddTileMaker(int value, int row, int column)
+        private void EvenOddTileMaker(int value, int row, int column)
         {
             if (value % 2 == 0)
             {
@@ -173,7 +187,7 @@ namespace RouletteLogica
             }
         }
 
-        public void RedBlackTileMaker(int row, int column)
+        private void RedBlackTileMaker(int row, int column)
         {
             if (new MyColor(numbers[row, column].GetColor()).ToString().Equals("Red"))
             {
@@ -185,7 +199,69 @@ namespace RouletteLogica
             }
         }
 
-        public void TileInitializer(Tile[] array, int multiplier)
+        public void WinningTileMaker(int value)
+        {
+            if(GiveWinningTile(value, numberTiles) != null)
+            {
+                winningTiles.Add(GiveWinningTile(value, numberTiles));
+            }
+            if (GiveWinningTile(value, rightTwelveTiles) != null)
+            {
+                winningTiles.Add(GiveWinningTile(value, rightTwelveTiles));
+            }
+            if (GiveWinningTile(value, bottomTwelveTiles) != null)
+            {
+                winningTiles.Add(GiveWinningTile(value, bottomTwelveTiles));
+            }
+            if (GiveWinningTile(value, eightTeenTiles) != null)
+            {
+                winningTiles.Add(GiveWinningTile(value, eightTeenTiles));
+            }
+            if (GiveWinningTile(value, evenOddTiles) != null)
+            {
+                winningTiles.Add(GiveWinningTile(value, evenOddTiles));
+            }
+            if (GiveWinningTile(value, redBlackTiles) != null)
+            {
+                winningTiles.Add(GiveWinningTile(value, redBlackTiles));
+            }
+
+            /*foreach(Tile numberTile in numberTiles)
+            {
+                if(numberTile.GetNumber(0).GetValue() == value)
+                {
+                    winningTiles.Add(numberTile);
+                }
+            }
+            foreach(Tile rightTwelveTile in rightTwelveTiles)
+            {
+                for (int i = 0; i < rightTwelveTile.Size(); i++)
+                {
+                    if (rightTwelveTile.GetNumber(i).GetValue() == value)
+                    {
+                        winningTiles.Add(rightTwelveTile);
+                        //als dit gebeurt is mag de foreach stoppen
+                    }
+                }
+            }*/
+        }
+
+        private Tile GiveWinningTile(int value, Tile[] tileArray)
+        {
+            foreach (Tile tile in tileArray)
+            {
+                for (int i = 0; i < tile.Size(); i++)
+                {
+                    if (tile.GetNumber(i).GetValue() == value)
+                    {
+                        return tile;
+                    }
+                }
+            }
+            return null;
+        }
+
+        private void TileInitializer(Tile[] array, int multiplier)
         {
             for (int i = 0; i < array.Length; i++)
             {
