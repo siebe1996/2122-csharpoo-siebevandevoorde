@@ -19,12 +19,23 @@ namespace RouletteConsole
 
         public void Run()
         {
+            DrawIntro();
             DrawNumbers();
             DrawBottomTwelveTiles();
             DrawLastRow();
             StartQuestion();
         }
 
+        private void DrawIntro()
+        {
+            Console.WriteLine("______      ____    ___  ___  ___       ___       _______   ________  ________  _______ ");
+            Console.WriteLine("|     \\    /    \\   |  ||  |  |  |      |  |      |   ___|  |__   __| |__   __| |   ___|");
+            Console.WriteLine("|  ||  |  /      \\  |  ||  |  |  |      |  |      |  |_        | |       | |    |  |_");
+            Console.WriteLine("|     /   |  ||  |  |  ||  |  |  |      |  |      |   _|       | |       | |    |   _|");
+            Console.WriteLine("|     \\   \\      /  \\      /  |  |___   |  |___   |  |___      | |       | |    |  |___");
+            Console.WriteLine("|__|\\__\\   \\____/    \\____/   |______|  |______|  |______|     |_|       |_|    |______|");
+            Console.WriteLine();
+        }
         private void DrawNumbers()
         {
             int[] dimLength = GetDimLength();
@@ -337,7 +348,7 @@ namespace RouletteConsole
             if (input3 > 0 && input3 < 4)
             {
                 Tile[] RightTwelveTiles = board.GetRightTwelveTiles();
-                Console.WriteLine(RightTwelveTiles[input3 - 1]);
+                //Console.WriteLine(RightTwelveTiles[input3 - 1]); //testcode
                 BetQuestion(RightTwelveTiles[input3 - 1]);
             }
             else
@@ -359,7 +370,7 @@ namespace RouletteConsole
             if (input3 > 0 && input3 < 4)
             {
                 Tile[] BottomTwelveTiles = board.GetBottomTwelveTiles();
-                Console.WriteLine(BottomTwelveTiles[input3 - 1]);
+                //Console.WriteLine(BottomTwelveTiles[input3 - 1]); //testcode
                 BetQuestion(BottomTwelveTiles[input3 - 1]);
             }
             else
@@ -403,7 +414,7 @@ namespace RouletteConsole
             if (input3 > 0 && input3 < 3)
             {
                 Tile[] evenOddTiles = board.GetEvenOddTiles();
-                Console.WriteLine(evenOddTiles[input3 - 1]); //testcode
+                //Console.WriteLine(evenOddTiles[input3 - 1]); //testcode
                 BetQuestion(evenOddTiles[input3 - 1]);
             }
             else
