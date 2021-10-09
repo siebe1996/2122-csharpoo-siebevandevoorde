@@ -30,8 +30,8 @@ namespace RouletteLogica
                 for(int i = 2; i >= 0; i--)
                 {
                     Numbers[i, j] = new Number();
-                    Numbers[i, j].SetValue(value);
-                    Numbers[i, j].SetColor(GiveColor(value));
+                    Numbers[i, j].Value = value;
+                    Numbers[i, j].Color = GiveColor(value);
                     value++;
                 }
             }
@@ -149,7 +149,7 @@ namespace RouletteLogica
 
         private void RedBlackTileMaker(int row, int column)
         {
-            if (new MyColor(Numbers[row, column].GetColor()).ToString().Equals("Red"))
+            if (new MyColor(Numbers[row, column].Color).ToString().Equals("Red"))
             {
                 RedBlackTiles[0].AddNumber(Numbers[row, column]);
             }
@@ -212,7 +212,7 @@ namespace RouletteLogica
             {
                 for (int i = 0; i < tile.Size(); i++)
                 {
-                    if (tile.GetNumber(i).GetValue() == value)
+                    if (tile.GetNumber(i).Value == value)
                     {
                         return tile;
                     }

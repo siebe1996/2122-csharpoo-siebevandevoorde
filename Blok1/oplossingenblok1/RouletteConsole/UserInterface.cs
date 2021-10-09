@@ -97,13 +97,13 @@ namespace RouletteConsole
             Number[,] numbers = board.Numbers;
             for (int j = 0; j < dimLength[1]; j++)
             {
-                if (numbers[lineNumber, j].GetValue() < 10)
+                if (numbers[lineNumber, j].Value < 10)
                 {
-                    numberLine += string.Format("{0,0}/{1,-7}", numbers[lineNumber, j].GetValue().ToString(), new MyColor(numbers[lineNumber, j].GetColor()).ToString());
+                    numberLine += string.Format("{0,0}/{1,-7}", numbers[lineNumber, j].Value.ToString(), new MyColor(numbers[lineNumber, j].Color).ToString());
                 }
                 else
                 {
-                    numberLine += string.Format("{0,0}/{1,-6}", numbers[lineNumber, j].GetValue().ToString(), new MyColor(numbers[lineNumber, j].GetColor()).ToString());
+                    numberLine += string.Format("{0,0}/{1,-6}", numbers[lineNumber, j].Value.ToString(), new MyColor(numbers[lineNumber, j].Color).ToString());
                 }
                 numberLine += "|";
             }
@@ -138,7 +138,7 @@ namespace RouletteConsole
         {
             Tile[] rightTwelveTiles = board.RightTwelveTiles;
             string rightTwelveTile = "";
-            rightTwelveTile = string.Format("{0,0}-{1,-4}", rightTwelveTiles[lineNumber].GetNumber(0).GetValue().ToString(), rightTwelveTiles[lineNumber].GetNumber(rightTwelveTiles[lineNumber].Size() - 1).GetValue().ToString());
+            rightTwelveTile = string.Format("{0,0}-{1,-4}", rightTwelveTiles[lineNumber].GetNumber(0).Value.ToString(), rightTwelveTiles[lineNumber].GetNumber(rightTwelveTiles[lineNumber].Size() - 1).Value.ToString());
             rightTwelveTile += "|";
             return rightTwelveTile;
 
@@ -150,7 +150,7 @@ namespace RouletteConsole
             string bottomTwelveTile = "|";
             for (int i = 0; i < bottomTwelveTiles.Length; i++)
             {
-                bottomTwelveTile += string.Format("{0,19}-{1,-19}", bottomTwelveTiles[i].GetNumber(0).GetValue().ToString(), bottomTwelveTiles[i].GetNumber(bottomTwelveTiles[i].Size() - 1).GetValue().ToString());
+                bottomTwelveTile += string.Format("{0,19}-{1,-19}", bottomTwelveTiles[i].GetNumber(0).Value.ToString(), bottomTwelveTiles[i].GetNumber(bottomTwelveTiles[i].Size() - 1).Value.ToString());
                 bottomTwelveTile += "|";
             }
             return bottomTwelveTile;
@@ -162,7 +162,7 @@ namespace RouletteConsole
             string eightTeenTile = "|";
             for (int i = 0; i < eightTeenTiles.Length; i++)
             {
-                eightTeenTile += string.Format("{0,9}-{1,-9}", eightTeenTiles[i].GetNumber(0).GetValue().ToString(), eightTeenTiles[i].GetNumber(eightTeenTiles[i].Size() - 1).GetValue().ToString());
+                eightTeenTile += string.Format("{0,9}-{1,-9}", eightTeenTiles[i].GetNumber(0).Value.ToString(), eightTeenTiles[i].GetNumber(eightTeenTiles[i].Size() - 1).Value.ToString());
                 eightTeenTile += "|";
             }
             return eightTeenTile;
