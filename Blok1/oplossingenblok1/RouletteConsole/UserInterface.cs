@@ -300,19 +300,47 @@ namespace RouletteConsole
         private void EightTeenTileQuestion()
         {
             Console.WriteLine("type 1 voor de nummers tussen 1->18, 2 voor de nummers tussen 19->36");
-            ReadEightTeenTile();
+            //ReadEightTeenTile();
+            Tile[] EightTeenTiles = board.EightTeenTiles;
+            Read(EightTeenTileQuestion, EightTeenTiles);
         }
 
         private void EvenOddTileQuestion()
         {
             Console.WriteLine("type 1 voor even nummers, 2 voor oneven nummers");
-            ReadEvenOddTile();
+            //ReadEvenOddTile();
+            Tile[] EvenOddTiles = board.EvenOddTiles;
+            Read(EvenOddTileQuestion, EvenOddTiles);
         }
 
         private void RedBlackTileQuestion()
         {
             Console.WriteLine("type 1 voor rood, 2 voor zwart");
-            ReadRedBlackTile();
+            //ReadRedBlackTile();
+            Tile[] RedBlackTiles = board.RedBlackTiles;
+            Read(RedBlackTileQuestion, RedBlackTiles);
+        }
+
+        private void Read(Action question, Tile[] tiles)
+        {
+            int input3 = int.MaxValue;
+            string input3Str = Console.ReadLine();
+            if (!int.TryParse(input3Str, out input3))
+            {
+                Console.WriteLine("Geef een nummer in");
+                question();
+            }
+            if (input3 > 0 && input3 < 3)
+            {
+                //Tile[] EightTeenTiles = board.EightTeenTiles;
+                //Console.WriteLine(EightTeenTiles[input3 - 1]); //testcode
+                BetQuestion(tiles[input3 - 1]);
+            }
+            else
+            {
+                Console.WriteLine("Geef een geldig nummer in");
+                question();
+            }
         }
 
         private void ReadNumber()
@@ -511,17 +539,23 @@ namespace RouletteConsole
 
         private void PlayAgainRead()
         {
-            string input4 = Console.ReadLine();
-            input4 = input4.ToUpper();
-            if (input4.Equals(YesOrNo.J) || input4.Equals(YesOrNo.Y) || input4.Equals(YesOrNo.JA) || input4.Equals(YesOrNo.YES))
+            try
             {
-                StartQuestion();
+                YesOrNo input4 = (YesOrNo)Enum.Parse(typeof(YesOrNo), Console.ReadLine().ToUpper());
+                if (input4.Equals(YesOrNo.J) || input4.Equals(YesOrNo.Y) || input4.Equals(YesOrNo.JA) || input4.Equals(YesOrNo.YES))
+                {
+                    StartQuestion();
+                }
+                else if (input4.Equals(YesOrNo.N) || input4.Equals(YesOrNo.NEE) || input4.Equals(YesOrNo.NO))
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    PlayAgainQuestion();
+                }
             }
-            else if (input4.Equals(YesOrNo.N) || input4.Equals(YesOrNo.NEE) || input4.Equals(YesOrNo.NO))
-            {
-                Environment.Exit(0);
-            }
-            else
+            catch(Exception)
             {
                 PlayAgainQuestion();
             }
