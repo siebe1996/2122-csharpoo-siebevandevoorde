@@ -512,11 +512,12 @@ namespace RouletteConsole
         private void PlayAgainRead()
         {
             string input4 = Console.ReadLine();
-            if (input4.Equals("y"))
+            input4 = input4.ToUpper();
+            if (input4.Equals(YesOrNo.J) || input4.Equals(YesOrNo.Y) || input4.Equals(YesOrNo.JA) || input4.Equals(YesOrNo.YES))
             {
                 StartQuestion();
             }
-            else if (input4.Equals("n"))
+            else if (input4.Equals(YesOrNo.N) || input4.Equals(YesOrNo.NEE) || input4.Equals(YesOrNo.NO))
             {
                 Environment.Exit(0);
             }
