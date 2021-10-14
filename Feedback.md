@@ -4,19 +4,16 @@
 
 #### Kennismaking Visual Studio 2019
 
---> Nog niet beoordeeld
 
-- [ ] *Aanmaken solution binnen GIT-repository*
-- [ ] *Eenvoudige consoletoepassing (met invoer gebruiker)*
-- [ ] *Eenvoudige WinForm toepassing*
-- [ ] *Een klasse toevoegen*
+- [x] *Aanmaken solution binnen GIT-repository*
+- [x] *Eenvoudige consoletoepassing (met invoer gebruiker)*
+- [x] *Eenvoudige WinForm toepassing*
+- [x] *Een klasse toevoegen*
 
 #### Gebruik GIT
 
---> Nog niet beoordeeld
-
-- [ ] *Je gebruikt 'atomaire' commits*
-- [ ] *Je gebruikt zinvolle commit messages*
+- [x] *Je gebruikt 'atomaire' commits*
+- [x] *Je gebruikt zinvolle commit messages*
 
 #### Debugging
 
@@ -28,17 +25,20 @@
 
 #### Programmeerstijl
 
---> Nog niet beoordeeld
+- [x] *Huisregels voor programmeerstijl volgen*
 
-- [ ] *Huisregels voor programmeerstijl volgen*
- 
+* Gebruik type inference ('var') volgens de conventie uit de stijlregels.
+* Gebruik de 'this'-qualifier enkel waar nodig om verwarring te vermijden.
+* Schrijf geen te lange methoden (richtlijn ~20 lijnen).
+
+* Tip: hou rekening met de messages en warnings uit de 'Error List'.
+
+
 #### Exceptions
 
---> Nog niet beoordeeld
-
-- [ ] *try..catch*
+- [x] *try..catch*
 - [ ] *try..catch..finally*
-- [ ] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
+- [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
 #### Enumerations
 
@@ -48,25 +48,19 @@
  
 #### Properties
 
---> Nog niet beoordeeld
-
-- [ ] *Full property (with private backing field)*
-- [ ] *Extra code in getter of setter (bv. validatie)*
-- [ ] *Auto-implemented property*
+- [x] *Full property (with private backing field)*
+- [x] *Extra code in getter of setter (bv. validatie)*
+- [x] *Auto-implemented property*
 - [ ] *Access-modifiers voor Getters en Setters*
 
 #### Interpolated strings
 
---> Nog niet beoordeeld
-
-- [ ] *Interpolated strings*
+- [x] *Interpolated strings*
 
 #### Generic collections
 
---> Nog niet beoordeeld
-
-- [ ] *List<T>*
-- [ ] *Dictionary<T,T>*
+- [x] *List<T>*
+- [x] *Dictionary<T,T>*
 - [ ] *Overzicht andere generic collections*
 
 #### Interfaces
@@ -79,12 +73,13 @@
 
 #### Architectuur van een toepassing - Meerlagenmodel
 
---> Nog niet beoordeeld
-
-- [ ] *Klasseblibliotheken*
-- [ ] *Meerlagenmodel - 3lagenmodel*
+- [x] *Klasseblibliotheken*
+- [x] *Meerlagenmodel - 3lagenmodel*
 - [ ] *'Loose coupling' - dependency injection*
 - [ ] *Interface gebruiken als scheiding tussen architectuurlagen*
+
+* Je gebruikt al een opdeling volgens het drielagenmodel maar inhoudelijk is die nog niet helemaal in orde: er zit nog eend eel van de spellogica in de presentatielaag (bv. 'CheckWin').
+
 
 #### Bestanden en 'streams'
 
@@ -102,10 +97,8 @@
 
 #### Klassen - klassehiërarchie
 
---> Nog niet beoordeeld
-
-- [ ] *Klasse declaratie*
-- [ ] *constructor overloading*
+- [x] *Klasse declaratie*
+- [x] *constructor overloading*
 - [ ] *Klasse-hiërarchie - subklasse - base-constructor*
 - [ ] *Klasse-hiërarchie - virtual methods - override*
 - [ ] *Abstracte klasse + implementatie*
@@ -131,9 +124,9 @@
 
 #### Lambda expressions
 
---> Nog niet beoordeeld
-
 - [ ] *Lambda expressions*
+
+* Je gebruikt nog geen lambda expressions  (een 'expression bodied' property is geen lmabda expression).
 
 #### Language Integrated Query (Linq)
 
@@ -188,9 +181,9 @@
 
 #### (Statische klassen, methoden, velden)
 
---> Nog niet beoordeeld
-
 - [ ] *Zinvol gebruik statische klassen, methoden, velden*
+
+* Je gebruik van een statische klasse voor RouletteWheel is zeker geen 'Good Practice'.
 
 #### Code Reviews
 
