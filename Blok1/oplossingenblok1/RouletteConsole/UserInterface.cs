@@ -288,13 +288,17 @@ namespace RouletteConsole
         private void RightTwelveTileQuestion()
         {
             Console.WriteLine("type 1 voor de nummers tussen 3->36, 2 voor de nummers tussen 2->35, 3 voor de nummers tussen 1->34");
-            ReadRightTwelveTile();
+            //ReadRightTwelveTile();
+            Tile[] RightTwelveTiles = board.RightTwelveTiles;
+            Read(RightTwelveTileQuestion, RightTwelveTiles);
         }
         
         private void BottomTwelveTileQuestion()
         {
             Console.WriteLine("type 1 voor de nummers tussen 1->12, 2 voor de nummers tussen 13->24, 3 voor de nummers tussen 1->36");
-            ReadBottomTwelveTile();
+            //ReadBottomTwelveTile();
+            Tile[] BottomTwelveTiles = board.BottomTwelveTiles;
+            Read(BottomTwelveTileQuestion, BottomTwelveTiles);
         }
 
         private void EightTeenTileQuestion()
@@ -330,10 +334,8 @@ namespace RouletteConsole
                 Console.WriteLine("Geef een nummer in");
                 question();
             }
-            if (input3 > 0 && input3 < 3)
+            if (input3 > 0 && input3 < tiles.Length+1)
             {
-                //Tile[] EightTeenTiles = board.EightTeenTiles;
-                //Console.WriteLine(EightTeenTiles[input3 - 1]); //testcode
                 BetQuestion(tiles[input3 - 1]);
             }
             else
