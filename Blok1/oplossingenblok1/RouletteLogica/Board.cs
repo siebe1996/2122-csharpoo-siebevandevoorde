@@ -129,9 +129,6 @@ namespace RouletteLogica
         private void RedBlackTileMaker()
         {
 
-            //RedBlackTiles[0].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Red")).Select(n => n.GetNumber(0)).ToList());
-            //RedBlackTiles[1].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Black")).Select(n => n.GetNumber(0)).ToList());
-
             RedBlackTiles[0].AddNumberList(NumberTiles.Where(n => n.GetNumber(0).Color.ColorString().Equals("Red")).Select(n => n.GetNumber(0)).ToList());
             RedBlackTiles[1].AddNumberList(NumberTiles.Where(n => n.GetNumber(0).Color.ColorString().Equals("Black")).Select(n => n.GetNumber(0)).ToList());
 
@@ -172,25 +169,6 @@ namespace RouletteLogica
             {
                 WinningTiles.Add(GiveWinningTile(value, RedBlackTiles));
             }
-
-            /*foreach(Tile numberTile in numberTiles)
-            {
-                if(numberTile.GetNumber(0).GetValue() == value)
-                {
-                    winningTiles.Add(numberTile);
-                }
-            }
-            foreach(Tile rightTwelveTile in rightTwelveTiles)
-            {
-                for (int i = 0; i < rightTwelveTile.Size(); i++)
-                {
-                    if (rightTwelveTile.GetNumber(i).GetValue() == value)
-                    {
-                        winningTiles.Add(rightTwelveTile);
-                        //als dit gebeurt is mag de foreach stoppen
-                    }
-                }
-            }*/
         }
 
         private Tile GiveWinningTile(int value, Tile[] tileArray)
