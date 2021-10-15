@@ -20,6 +20,12 @@ namespace RouletteLogica
             this.capital = capital;
         }
 
+        public Player(Player player)
+        {
+            this.name = player.name;
+            this.capital = player.capital;
+        }
+
         public void PlaceBet(Tile tile, int bet)
         {
             if (bet <= capital)

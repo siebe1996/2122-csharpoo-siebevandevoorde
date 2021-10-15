@@ -35,12 +35,6 @@ namespace RouletteLogica
             return numbers.Count;
         }
 
-        public void GetTilesWithNumber(int number)
-        {
-            //rteurn alle tiles die er een tile is met dit nummer return deze tile
-            //if () { }
-        }
-
         public override string ToString()
         {
             string weergave = "{";
