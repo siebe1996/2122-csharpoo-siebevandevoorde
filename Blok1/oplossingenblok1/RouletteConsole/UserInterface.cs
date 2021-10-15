@@ -237,8 +237,9 @@ namespace RouletteConsole
         private void NumberQuestion()
         {
             Console.WriteLine("Type op welk nummer je wilt inzetten (1->36)");
-            ReadNumber();
-
+            //ReadNumber();
+            Tile[] NumberTiles = board.NumberTiles;
+            Read(NumberQuestion, NumberTiles);
         }
 
         private void TileQuestion()
@@ -342,137 +343,6 @@ namespace RouletteConsole
             {
                 Console.WriteLine("Geef een geldig nummer in");
                 question();
-            }
-        }
-
-        private void ReadNumber()
-        {
-            int input2 = int.MaxValue;
-            string input2Str = Console.ReadLine();
-            if (!int.TryParse(input2Str, out input2))
-            {
-                Console.WriteLine("Geef een nummer in");
-                NumberQuestion();
-            }
-            if (input2 > 0 && input2 < 37)
-            {
-                Tile[] numberTiles = board.NumberTiles;
-                BetQuestion(numberTiles[input2 - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Geef een geldig nummer in");
-                NumberQuestion();
-            }
-        }
-
-        private void ReadRightTwelveTile()
-        {
-            int input3 = int.MaxValue;
-            string input3Str = Console.ReadLine();
-            if (!int.TryParse(input3Str, out input3))
-            {
-                Console.WriteLine("Geef een nummer in");
-                RightTwelveTileQuestion();
-            }
-            if (input3 > 0 && input3 < 4)
-            {
-                Tile[] RightTwelveTiles = board.RightTwelveTiles;
-                //Console.WriteLine(RightTwelveTiles[input3 - 1]); //testcode
-                BetQuestion(RightTwelveTiles[input3 - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Geef een geldig nummer in");
-                RightTwelveTileQuestion();
-            }
-        }
-
-        private void ReadBottomTwelveTile()
-        {
-            int input3 = int.MaxValue;
-            string input3Str = Console.ReadLine();
-            if (!int.TryParse(input3Str, out input3))
-            {
-                Console.WriteLine("Geef een nummer in");
-                BottomTwelveTileQuestion();
-            }
-            if (input3 > 0 && input3 < 4)
-            {
-                Tile[] BottomTwelveTiles = board.BottomTwelveTiles;
-                //Console.WriteLine(BottomTwelveTiles[input3 - 1]); //testcode
-                BetQuestion(BottomTwelveTiles[input3 - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Geef een geldig nummer in");
-                BottomTwelveTileQuestion();
-            }
-        }
-
-        private void ReadEightTeenTile()
-        {
-            int input3 = int.MaxValue;
-            string input3Str = Console.ReadLine();
-            if (!int.TryParse(input3Str, out input3))
-            {
-                Console.WriteLine("Geef een nummer in");
-                EightTeenTileQuestion();
-            }
-            if (input3 > 0 && input3 < 3)
-            {
-                Tile[] EightTeenTiles = board.EightTeenTiles;
-                //Console.WriteLine(EightTeenTiles[input3 - 1]); //testcode
-                BetQuestion(EightTeenTiles[input3 - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Geef een geldig nummer in");
-                EightTeenTileQuestion();
-            }
-        }
-
-        private void ReadEvenOddTile()
-        {
-            int input3 = int.MaxValue;
-            string input3Str = Console.ReadLine();
-            if (!int.TryParse(input3Str, out input3))
-            {
-                Console.WriteLine("Geef een nummer in");
-                EvenOddTileQuestion();
-            }
-            if (input3 > 0 && input3 < 3)
-            {
-                Tile[] evenOddTiles = board.EvenOddTiles;
-                //Console.WriteLine(evenOddTiles[input3 - 1]); //testcode
-                BetQuestion(evenOddTiles[input3 - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Geef een geldig nummer in");
-                EvenOddTileQuestion();
-            }
-        }
-
-        private void ReadRedBlackTile()
-        {
-            int input3 = int.MaxValue;
-            string input3Str = Console.ReadLine();
-            if (!int.TryParse(input3Str, out input3))
-            {
-                Console.WriteLine("Geef een nummer in");
-                RedBlackTileQuestion();
-            }
-            if (input3 > 0 && input3 < 3)
-            {
-                Tile[] RedBlackTiles = board.RedBlackTiles;
-                //Console.WriteLine(RedBlackTiles[input3 - 1]); //testcode
-                BetQuestion(RedBlackTiles[input3 - 1]);
-            }
-            else
-            {
-                Console.WriteLine("Geef een geldig nummer in");
-                RedBlackTileQuestion();
             }
         }
 

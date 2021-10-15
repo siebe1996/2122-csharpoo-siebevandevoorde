@@ -20,6 +20,11 @@ namespace RouletteLogica
             numbers.Add(number);
         }
 
+        public void AddNumberList(List<Number> numbers)
+        {
+            this.numbers = numbers;
+        }
+
         public Number GetNumber(int index)
         {
             return numbers[index];

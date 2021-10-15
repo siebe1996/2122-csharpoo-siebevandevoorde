@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
 
@@ -18,7 +19,6 @@ namespace RouletteLogica
         public Board()
         {
             NumbersBoardFiller();
-            RightTwelveTileMaker();
             RunningOverAllNumbers();
         }
 
@@ -65,41 +65,24 @@ namespace RouletteLogica
             return color;
         }
 
-        private void RightTwelveTileMaker()
-        {
-            TileInitializer(RightTwelveTiles, 3);
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    RightTwelveTiles[i].AddNumber(Numbers[i, j]);
-                    //Console.Write(Numbers[i, j] + ", "); //testcode
-                }
-                //Console.WriteLine(); //testcode
-            }
-        }
-
         private void RunningOverAllNumbers()
         {
             int value = 1;
-            TileInitializer(NumberTiles, 36);
-            TileInitializer(BottomTwelveTiles, 3);
-            TileInitializer(EightTeenTiles, 2);
-            TileInitializer(EvenOddTiles, 2);
-            TileInitializer(RedBlackTiles, 2);
+            AllTileInitializer();
             for (int j = 0; j < 12; j++) 
             {
                 for(int i = 2; i >= 0; i--)
                 {
                     NumberTiles[value - 1].AddNumber(Numbers[i, j]);
                     //Console.Write(value + ", ");
-                    BottomTwelveTileMaker(value, i, j);
-                    EightTeenTileMaker(value, i, j);
-                    EvenOddTileMaker(value, i, j);
-                    RedBlackTileMaker(i, j);
                     value++;
                 }
             }
+            RightTwelveTileMaker();
+            BottomTwelveTileMaker();
+            EightTeenTileMaker();
+            RedBlackTileMaker();
+            EvenOddTileMaker();
             /*Console.WriteLine();
             foreach (Tile tile in eightTeenTiles)
             {
@@ -107,56 +90,57 @@ namespace RouletteLogica
             }*/
         }
 
-        private void BottomTwelveTileMaker(int value, int row, int column)
+        private void AllTileInitializer()
         {
-            if (value < 13)
-            {
-                BottomTwelveTiles[0].AddNumber(Numbers[row, column]);
-            }
-            else if (value > 24)
-            {
-                BottomTwelveTiles[2].AddNumber(Numbers[row, column]);
-            }
-            else
-            {
-                BottomTwelveTiles[1].AddNumber(Numbers[row, column]);
-            }
+            TileInitializer(NumberTiles, 36);
+            TileInitializer(BottomTwelveTiles, 3);
+            TileInitializer(EightTeenTiles, 2);
+            TileInitializer(EvenOddTiles, 2);
+            TileInitializer(RedBlackTiles, 2);
+            TileInitializer(RightTwelveTiles, 3);
         }
 
-        private void EightTeenTileMaker(int value, int row, int column)
+        private void RightTwelveTileMaker()
         {
-            if (value < 19)
-            {
-                EightTeenTiles[0].AddNumber(Numbers[row, column]);
-            }
-            else
-            {
-                EightTeenTiles[1].AddNumber(Numbers[row, column]);
-            }
+            RightTwelveTiles[0].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value % 3 == 0).Select(n => n.GetNumber(0))).ToList());
+            RightTwelveTiles[1].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value % 3 == 2).Select(n => n.GetNumber(0))).ToList());
+            RightTwelveTiles[2].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value % 3 == 1).Select(n => n.GetNumber(0))).ToList());
         }
 
-        private void EvenOddTileMaker(int value, int row, int column)
+        private void BottomTwelveTileMaker()
         {
-            if (value % 2 == 0)
-            {
-                EvenOddTiles[0].AddNumber(Numbers[row, column]);
-            }
-            else
-            {
-                EvenOddTiles[1].AddNumber(Numbers[row, column]);
-            }
+            BottomTwelveTiles[0].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value < 13).Select(n => n.GetNumber(0))).ToList());
+            BottomTwelveTiles[2].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value > 24).Select(n => n.GetNumber(0))).ToList());
+            BottomTwelveTiles[1].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value >= 13 && n.GetNumber(0).Value <= 24).Select(n => n.GetNumber(0))).ToList());
         }
 
-        private void RedBlackTileMaker(int row, int column)
+        private void EightTeenTileMaker()
         {
-            if (new MyColor(Numbers[row, column].Color).ToString().Equals("Red"))
-            {
-                RedBlackTiles[0].AddNumber(Numbers[row, column]);
-            }
-            else
-            {
-                RedBlackTiles[1].AddNumber(Numbers[row, column]);
-            }
+            EightTeenTiles[0].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value < 19).Select(n => n.GetNumber(0))).ToList());
+            EightTeenTiles[1].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value >= 19).Select(n => n.GetNumber(0))).ToList());
+        }
+
+        private void EvenOddTileMaker()
+        {
+            EvenOddTiles[0].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value % 2 == 0).Select(n => n.GetNumber(0))).ToList());
+            EvenOddTiles[1].AddNumberList((NumberTiles.Where(n => n.GetNumber(0).Value % 2 == 1).Select(n => n.GetNumber(0))).ToList());
+        }
+
+        private void RedBlackTileMaker()
+        {
+            
+            RedBlackTiles[0].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Red")).Select(n => n.GetNumber(0)).ToList());
+            RedBlackTiles[1].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Black")).Select(n => n.GetNumber(0)).ToList());
+
+            /*
+            RedBlackTiles[0].AddNumberList((from numberTile in NumberTiles
+                                where new MyColor(numberTile.GetNumber(0).Color).ToString().Equals("Red")
+                                select numberTile.GetNumber(0)).ToList());
+
+            RedBlackTiles[1].AddNumberList((from numberTile in NumberTiles
+                                            where new MyColor(numberTile.GetNumber(0).Color).ToString().Equals("Black")
+                                            select numberTile.GetNumber(0)).ToList());
+            */
         }
 
         public void WinningTileMaker(int value)
