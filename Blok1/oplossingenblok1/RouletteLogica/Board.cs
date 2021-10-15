@@ -128,9 +128,12 @@ namespace RouletteLogica
 
         private void RedBlackTileMaker()
         {
-            
-            RedBlackTiles[0].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Red")).Select(n => n.GetNumber(0)).ToList());
-            RedBlackTiles[1].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Black")).Select(n => n.GetNumber(0)).ToList());
+
+            //RedBlackTiles[0].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Red")).Select(n => n.GetNumber(0)).ToList());
+            //RedBlackTiles[1].AddNumberList(NumberTiles.Where(n => new MyColor(n.GetNumber(0).Color).ToString().Equals("Black")).Select(n => n.GetNumber(0)).ToList());
+
+            RedBlackTiles[0].AddNumberList(NumberTiles.Where(n => n.GetNumber(0).Color.ColorString().Equals("Red")).Select(n => n.GetNumber(0)).ToList());
+            RedBlackTiles[1].AddNumberList(NumberTiles.Where(n => n.GetNumber(0).Color.ColorString().Equals("Black")).Select(n => n.GetNumber(0)).ToList());
 
             /*
             RedBlackTiles[0].AddNumberList((from numberTile in NumberTiles

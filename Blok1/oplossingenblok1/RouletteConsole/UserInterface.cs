@@ -99,11 +99,11 @@ namespace RouletteConsole
             {
                 if (numbers[lineNumber, j].Value < 10)
                 {
-                    numberLine += string.Format("{0,0}/{1,-7}", numbers[lineNumber, j].Value.ToString(), new MyColor(numbers[lineNumber, j].Color).ToString());
+                    numberLine += string.Format("{0,0}/{1,-7}", numbers[lineNumber, j].Value.ToString(), numbers[lineNumber, j].Color.ColorString());
                 }
                 else
                 {
-                    numberLine += string.Format("{0,0}/{1,-6}", numbers[lineNumber, j].Value.ToString(), new MyColor(numbers[lineNumber, j].Color).ToString());
+                    numberLine += string.Format("{0,0}/{1,-6}", numbers[lineNumber, j].Value.ToString(), numbers[lineNumber, j].Color.ColorString());
                 }
                 numberLine += "|";
             }

@@ -41,7 +41,7 @@ namespace RouletteLogica
 
         public override string ToString()
         {
-            return value+"/"+new MyColor(color);
+            return value+"/"+color.ColorString();
         }
     }
 }
