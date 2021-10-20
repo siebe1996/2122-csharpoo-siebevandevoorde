@@ -17,11 +17,9 @@
 
 #### Debugging
 
---> Nog niet beoordeeld (kan enkel interactief gebeuren)
-
-- [ ] *Code stap voor stap uitvoeren*
-- [ ] *Breakpoints*
-- [ ] *De waarde van variabelen bekijken tijdens de uitvoering van je programma*
+- [x] *Code stap voor stap uitvoeren*
+- [x] *Breakpoints*
+- [x] *De waarde van variabelen bekijken tijdens de uitvoering van je programma*
 
 #### Programmeerstijl
 
@@ -91,9 +89,9 @@
 
 #### 'Value' en 'Reference' types, cloning van objecten
 
---> Nog niet beoordeeld
-
 - [ ] *'value' en 'reference' types, 'deep' versus 'shallow' copy, object cloning*
+
+* Je hebt al een copy-constructor voor 'Player' maar er is geen sprake van een 'deep' copy omdat die kalsse enkele (relevante) velden heeft van een value-type.
 
 #### Klassen - klassehiërarchie
 
@@ -111,10 +109,8 @@
 
 ##### Extension methods
 
---> Nog niet beoordeeld
-
-- [ ] *Extension method schrijven*
-- [ ] *Functioneel gebruik van extension methods*
+- [x] *Extension method schrijven*
+- [x] *Functioneel gebruik van extension methods*
 
 #### Delegates
 
@@ -130,11 +126,9 @@
 
 #### Language Integrated Query (Linq)
 
---> Nog niet beoordeeld
-
 - [ ] *Linq standard query operator syntax*
-- [ ] *Linq method syntax*
-- [ ] *Basismethodes voor Linq*
+- [x] *Linq method syntax*
+- [x] *Basismethodes voor Linq*
 
 #### Events
 
