@@ -8,13 +8,14 @@ namespace RouletteConsole
     class UserInterface
     {
 
+        //public Player Player { get; }
         private readonly Board board;
-        private Player player;
+        //private Player player;
 
         public UserInterface()
         {
             board = new Board();
-            player = new Player("dummy", 100);
+            //Player = new Player("dummy", 100);
         }
 
         public void Run()
@@ -364,8 +365,13 @@ namespace RouletteConsole
             }
             try
             {
-                player.PlaceBet(tile, input4);
-                CheckWin();
+                board.Player.PlaceBet(tile, input4);
+                Tile winningTile = board.CheckWin();
+                if (winningTile.Multiplier != 0)
+                {
+                    PrintWiningAndPlayerInfo(winningTile);
+                }
+                PlayAgainQuestion();
             }
             catch(ArgumentException e)
             {
@@ -379,7 +385,7 @@ namespace RouletteConsole
             return RouletteWheel.Turn();
         }
 
-        private void CheckWin()
+        /*private void CheckWin()
         {
             //int outcome = Roll();
             int outcome = 15;
@@ -387,20 +393,21 @@ namespace RouletteConsole
             board.WinningTileMaker(outcome);
             foreach(Tile winningTile in board.WinningTiles)
             {
-                if (player.Bets.ContainsKey(winningTile))
+                if (Player.Bets.ContainsKey(winningTile))
                 {
-                    player.AddWinning(player.Bets[winningTile] * winningTile.Multiplier);
+                    Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
                     PrintWiningAndPlayerInfo(winningTile);
                 }
             }
-            player.Bets.Clear();
+            Player.Bets.Clear();
             board.WinningTiles.Clear();
             PlayAgainQuestion();
-        }
+        }*/
 
         private void PrintWiningAndPlayerInfo(Tile winningTile)
         {
-            Console.WriteLine($"je hebt {player.Bets[winningTile]} ingezet op {winningTile}, je hebt {(player.Bets[winningTile] * winningTile.Multiplier)} gewonnen");
+            Console.WriteLine($"je hebt {board.Player.Bets[winningTile]} ingezet op {winningTile}, je hebt {(board.Player.Bets[winningTile] * winningTile.Multiplier)} gewonnen");
+            board.Player.Bets.Clear();
         }
 
         private void PlayAgainQuestion()

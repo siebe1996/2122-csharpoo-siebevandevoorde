@@ -3,6 +3,7 @@
 using System.Drawing;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace RouletteLogica
 {
@@ -16,11 +17,13 @@ namespace RouletteLogica
         public Tile[] EvenOddTiles { get; } = new Tile[2];
         public Tile[] RedBlackTiles { get; } = new Tile[2];
         public List<Tile> WinningTiles { get; } = new List<Tile>();
+        public Player Player { get; }
 
         public Board()
         {
             NumbersBoardFiller();
             RunningOverAllNumbers();
+            Player = new Player("dummy", 100);
         }
 
         private void NumbersBoardFiller()
@@ -200,6 +203,25 @@ namespace RouletteLogica
             {
                 array[i] = new Tile(multiplier);
             }
+        }
+
+        public Tile CheckWin()
+        {
+            //int outcome = Roll();
+            int outcome = 15;
+            Console.WriteLine(outcome + " is gerolt");
+            WinningTileMaker(outcome);
+            Tile winnningTileHoler = new Tile();
+            foreach (Tile winningTile in WinningTiles)
+            {
+                if (Player.Bets.ContainsKey(winningTile))
+                {
+                    Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
+                    winnningTileHoler = winningTile;
+                }
+            }
+            WinningTiles.Clear();
+            return winnningTileHoler;
         }
     }
 }

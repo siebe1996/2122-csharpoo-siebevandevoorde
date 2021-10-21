@@ -11,6 +11,11 @@ namespace RouletteLogica
         private List<Number> numbers = new List<Number>();
         public int Multiplier { get; }
 
+        public Tile()
+        {
+            this.Multiplier = 0;
+        }
+
         public Tile(int multiplier)
         {
             this.Multiplier = multiplier;
