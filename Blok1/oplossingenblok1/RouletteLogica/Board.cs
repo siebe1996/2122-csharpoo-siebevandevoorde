@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RouletteLogica
 {
@@ -78,11 +79,18 @@ namespace RouletteLogica
                     value++;
                 }
             }
-            RightTwelveTileMaker();
+            Task job1 = Task.Run(() => { RightTwelveTileMaker(); });
+            Task job2 = Task.Run(() => { BottomTwelveTileMaker(); });
+            Task job3 = Task.Run(() => { EightTeenTileMaker(); });
+            Task job4 = Task.Run(() => { RedBlackTileMaker(); });
+            Task job5 = Task.Run(() => { EvenOddTileMaker(); });
+            Task.WaitAll(new Task[] { job1, job2, job3, job4, job5 });
+            /*RightTwelveTileMaker();
             BottomTwelveTileMaker();
             EightTeenTileMaker();
             RedBlackTileMaker();
             EvenOddTileMaker();
+            */
             /*Console.WriteLine();
             foreach (Tile tile in eightTeenTiles)
             {
