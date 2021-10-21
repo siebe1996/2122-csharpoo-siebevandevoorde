@@ -122,7 +122,7 @@
 
 - [ ] *Lambda expressions*
 
-* Je gebruikt nog geen lambda expressions  (een 'expression bodied' property is geen lmabda expression).
+* Je gebruikt enkele heel elementaire lambda-expressies.
 
 #### Language Integrated Query (Linq)
 
@@ -139,13 +139,14 @@
 
 #### Concurrent programmatie: Tasks
 
---> Nog niet beoordeeld
-
-- [ ] *Tasks*
+- [x] *Tasks*
 - [ ] *Cross-thread' interactie vanuit een Task met de userinterface*
 - [ ] *Exceptions in Tasks*
 - [ ] *Parallel loops*
  
+
+* Je gebruikt geen Task cancellation.
+
 #### Concurrent programming: Task synchronisation
 
 --> Nog niet beoordeeld
