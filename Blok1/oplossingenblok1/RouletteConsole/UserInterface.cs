@@ -9,14 +9,11 @@ namespace RouletteConsole
     class UserInterface
     {
 
-        //public Player Player { get; }
         private readonly Board board;
-        //private Player player;
 
         public UserInterface()
         {
             board = new Board();
-            //Player = new Player("dummy", 100);
         }
 
         public void Run()
