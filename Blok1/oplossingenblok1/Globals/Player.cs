@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RouletteLogica
+namespace Globals
 {
     public class Player
     {

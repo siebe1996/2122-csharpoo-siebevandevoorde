@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
-namespace RouletteLogica
+namespace Globals
 {
     public class Number
     {
@@ -27,7 +27,8 @@ namespace RouletteLogica
         public int Value
         {
             get => value;
-            set {
+            set
+            {
                 if (value < 1 || value > 36)
                 {
                     throw new ArgumentException("A number value can only be 1 -> 36");
@@ -41,7 +42,7 @@ namespace RouletteLogica
 
         public override string ToString()
         {
-            return value+"/"+color.ColorString();
+            return value + "/" + color.ColorString();
         }
     }
 }

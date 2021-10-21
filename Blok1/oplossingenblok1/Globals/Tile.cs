@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RouletteLogica
+namespace Globals
 {
     public class Tile
     {
@@ -43,11 +43,11 @@ namespace RouletteLogica
         public override string ToString()
         {
             string weergave = "{";
-            foreach(Number number in numbers)
+            foreach (Number number in numbers)
             {
                 weergave += number + ",";
             }
-            weergave += "} "+Multiplier;
+            weergave += "} " + Multiplier;
             return weergave;
         }
     }
