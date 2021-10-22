@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using Globals;
+using RouletteData;
 
 namespace RouletteLogica
 {
@@ -234,7 +235,9 @@ namespace RouletteLogica
                     Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
                     winnningTileHolder = winningTile;
                 }
+
             });
+            Data.JSONSerializerDemo(Player);
             WinningTiles.Clear();
             return winnningTileHolder;
         }

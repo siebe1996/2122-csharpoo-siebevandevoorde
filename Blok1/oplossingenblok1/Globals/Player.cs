@@ -5,8 +5,8 @@ namespace Globals
 {
     public class Player
     {
-        private string name;
-        private int capital;
+        public string name { get; }
+        public int capital { get; private set; }
         public Dictionary<Tile, int> Bets { get; } = new Dictionary<Tile, int>();
 
 
