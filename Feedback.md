@@ -28,7 +28,8 @@
 * Gebruik type inference ('var') volgens de conventie uit de stijlregels.
 * Gebruik de 'this'-qualifier enkel waar nodig om verwarring te vermijden.
 * Schrijf geen te lange methoden (richtlijn ~20 lijnen).
-
+* Voor namen van publieke properties wordt PascalCasing gebruikt.
+  
 * Tip: hou rekening met de messages en warnings uit de 'Error List'.
 
 
@@ -49,7 +50,7 @@
 - [x] *Full property (with private backing field)*
 - [x] *Extra code in getter of setter (bv. validatie)*
 - [x] *Auto-implemented property*
-- [ ] *Access-modifiers voor Getters en Setters*
+- [x] *Access-modifiers voor Getters en Setters*
 
 #### Interpolated strings
 
@@ -76,7 +77,6 @@
 - [ ] *'Loose coupling' - dependency injection*
 - [ ] *Interface gebruiken als scheiding tussen architectuurlagen*
 
-* Je gebruikt al een opdeling volgens het drielagenmodel maar inhoudelijk is die nog niet helemaal in orde: er zit nog eend eel van de spellogica in de presentatielaag (bv. 'CheckWin').
 
 
 #### Bestanden en 'streams'
