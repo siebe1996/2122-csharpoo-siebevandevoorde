@@ -340,7 +340,7 @@ namespace RouletteConsole
             }
             try
             {
-                board.Player.PlaceBet(tile, input4);
+                board.Players[0].PlaceBet(tile, input4);
                 Tile winningTile = board.CheckWin();
                 if (winningTile.Multiplier != 0)
                 {
@@ -362,8 +362,8 @@ namespace RouletteConsole
 
         private void PrintWiningAndPlayerInfo(Tile winningTile)
         {
-            Console.WriteLine($"je hebt {board.Player.Bets[winningTile]} ingezet op {winningTile}, je hebt {(board.Player.Bets[winningTile] * winningTile.Multiplier)} gewonnen");
-            board.Player.Bets.Clear();
+            Console.WriteLine($"je hebt {board.Players[0].Bets[winningTile]} ingezet op {winningTile}, je hebt {(board.Players[0].Bets[winningTile] * winningTile.Multiplier)} gewonnen");
+            board.Players[0].Bets.Clear();
         }
 
         private void PlayAgainQuestion()

@@ -9,19 +9,65 @@ namespace RouletteData
 {
     public class Data
     {
-        public static void JSONSerializerDemo(Player player)
+        public static string StreamReader()
+        {
+            Console.WriteLine("The content of file TestFile.txt\n");
+            StreamReader sr = null;
+            string line = "";
+            try
+            {
+                string filePath = @"..\..\..\..\RouletteData\player.json";
+                if (File.Exists(filePath))
+                {
+                    sr = new StreamReader(filePath);
+                    while (!sr.EndOfStream)
+                    {
+                        line += sr.ReadLine();
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine($"The file could not be read:{e.Message}");
+            }
+            finally
+            {
+                if (sr != null) sr.Dispose();
+            }
+            Console.WriteLine();
+            return line;
+        }
+        public static void JSONSerializerAndWriter(List<Player> players)
         {
             Console.WriteLine("Serializing students to JSON Stream in memory... (using Newtonsoft Json.Net) \n");
-            /*var formatter = new Newtonsoft.Json.JsonSerializer();
-            using var stream = new MemoryStream();
-            using var sr = new StreamWriter(stream);
-            formatter.Serialize(sr, player);
-            // JSON serializer does not flush its StreamWriter when finished!
-            // so do it explicitly
-            sr.Flush();
-            stream.Seek(0, SeekOrigin.Begin);*/
 
-            string json = JsonConvert.SerializeObject(player);
+            string prevInfo = StreamReader();
+            List<Player> prevPlayers;
+            List<Player> allPlayers = players;
+            Player presentPlayer;
+            if (prevInfo != "")
+            {
+                prevPlayers = System.Text.Json.JsonSerializer.Deserialize<List<Player>>(prevInfo);
+                foreach (Player prevPlayer in prevPlayers)
+                {
+                    bool playerPresent = false;
+                    foreach (Player player in players)
+                    {
+                        if (prevPlayer.Equals(player))
+                        {
+                            playerPresent = true;
+                        }
+                    }
+                    if (!playerPresent)
+                    {
+                        allPlayers.Add(prevPlayer);
+                    }
+                }
+            }
+
+
+            string json = JsonConvert.SerializeObject(allPlayers);
             Console.WriteLine(json);
             File.WriteAllText(@"..\..\..\..\RouletteData\player.json", json);
 
@@ -37,8 +83,8 @@ namespace RouletteData
                 Console.WriteLine(line);
             }
             Console.WriteLine();*/
-        }
-        public static void JSONSerializerDemo2(Player player)
+            }
+            public static void JSONSerializerDemo2(Player player)
         {
             Console.WriteLine("Serializing students to string in memory... (indented, using System.text.Json) \n");
 
@@ -58,33 +104,6 @@ namespace RouletteData
             Console.WriteLine();*/
         }
 
-        public void StreamReaderDemo1()
-        {
-            Console.WriteLine("The content of file TestFile.txt\n");
-            StreamReader sr = null;
-            try
-            {
-                string filePath = @"Resources\TestFile.txt";
-                if (File.Exists(filePath))
-                {
-                    sr = new StreamReader(filePath);
-                    string line;
-                    while (!sr.EndOfStream)
-                    {
-                        line = sr.ReadLine();
-                        Console.WriteLine(line);
-                    }
-                }
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine($"The file could not be read:{e.Message}");
-            }
-            finally
-            {
-                if (sr != null) sr.Dispose();
-            }
-            Console.WriteLine();
-        }
+        
     }
 }

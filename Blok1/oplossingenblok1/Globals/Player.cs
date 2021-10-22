@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Globals
 {
-    public class Player
+    public class Player : IEquatable<Player>
     {
         public string name { get; }
         public int capital { get; private set; }
@@ -42,6 +42,17 @@ namespace Globals
         public void AddWinning(int winning)
         {
             capital += winning;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Player);
+        }
+
+        public bool Equals(Player other)
+        {
+            return other != null &&
+                   name == other.name;
         }
     }
 }

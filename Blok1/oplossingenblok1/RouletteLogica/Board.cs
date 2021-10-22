@@ -19,13 +19,13 @@ namespace RouletteLogica
         public Tile[] EvenOddTiles { get; } = new Tile[2];
         public Tile[] RedBlackTiles { get; } = new Tile[2];
         public List<Tile> WinningTiles { get; } = new List<Tile>();
-        public Player Player { get; }
+        public List<Player> Players { get; } = new List<Player>();
 
         public Board()
         {
             NumbersBoardFiller();
             RunningOverAllNumbers();
-            Player = new Player("dummy", 100);
+            Players.Add(new Player("dummy", 100));
         }
 
         private void NumbersBoardFiller()
@@ -230,14 +230,16 @@ namespace RouletteLogica
             }*/
             Parallel.ForEach(WinningTiles, (Tile winningTile) =>
             {
-                if (Player.Bets.ContainsKey(winningTile))
+                foreach(Player player in Players)
                 {
-                    Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
-                    winnningTileHolder = winningTile;
+                    if (player.Bets.ContainsKey(winningTile))
+                    {
+                        player.AddWinning(player.Bets[winningTile] * winningTile.Multiplier);
+                        winnningTileHolder = winningTile;
+                    }
                 }
-
             });
-            Data.JSONSerializerDemo(Player);
+            Data.JSONSerializerAndWriter(Players);
             WinningTiles.Clear();
             return winnningTileHolder;
         }
