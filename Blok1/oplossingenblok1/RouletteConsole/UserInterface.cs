@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using RouletteLogica;
 using Globals;
+using RouletteLogica;
 
 namespace RouletteConsole
 {
@@ -109,28 +108,6 @@ namespace RouletteConsole
             numberLine += GiveRightTwelveTiles(lineNumber);
             return numberLine;
         }
-
-        //testcode
-        /*fout bij tekenen
-        private string GiveNumberline(int extraTwelve, int lineNumber)
-        {
-            String numberLine = "|";
-            Tile[] numberTiles = board.GetNumberTiles();
-            for (int j = 0 + extraTwelve; j < 12 + extraTwelve; j++)
-            {
-                if (numberTiles[j].GetNumber(0).GetValue() < 10)
-                {
-                    numberLine += string.Format("{0,0}/{1,-7}", numberTiles[j].GetNumber(0).GetValue().ToString(), new MyColor(numberTiles[j].GetNumber(0).GetColor()).ToString());
-                }
-                else
-                {
-                    numberLine += string.Format("{0,0}/{1,-6}", numberTiles[j].GetNumber(0).GetValue().ToString(), new MyColor(numberTiles[j].GetNumber(0).GetColor()).ToString());
-                }
-                numberLine += "|";
-            }
-            numberLine += GiveRightTwelveTiles(lineNumber);
-            return numberLine;
-        }*/
 
 
         private string GiveRightTwelveTiles(int lineNumber)
@@ -260,12 +237,12 @@ namespace RouletteConsole
                 Console.WriteLine("Geef een nummer in");
                 TileQuestion();
             }
-            if (input2 < 1|| input2 > 5)
+            if (input2 < 1 || input2 > 5)
             {
                 Console.WriteLine("Geef een nummer tussen 1->5 in");
                 TileQuestion();
             }
-             switch (input2)
+            switch (input2)
             {
                 case 1:
                     RightTwelveTileQuestion();
@@ -292,7 +269,7 @@ namespace RouletteConsole
             Tile[] RightTwelveTiles = board.RightTwelveTiles;
             Read(RightTwelveTileQuestion, RightTwelveTiles);
         }
-        
+
         private void BottomTwelveTileQuestion()
         {
             Console.WriteLine("type 1 voor de nummers tussen 1->12, 2 voor de nummers tussen 13->24, 3 voor de nummers tussen 1->36");
@@ -334,7 +311,7 @@ namespace RouletteConsole
                 Console.WriteLine("Geef een nummer in");
                 question();
             }
-            if (input3 > 0 && input3 < tiles.Length+1)
+            if (input3 > 0 && input3 < tiles.Length + 1)
             {
                 BetQuestion(tiles[input3 - 1]);
             }
@@ -371,7 +348,7 @@ namespace RouletteConsole
                 }
                 PlayAgainQuestion();
             }
-            catch(ArgumentException e)
+            catch (ArgumentException e)
             {
                 Console.WriteLine(e);
                 BetQuestion(tile);
@@ -382,25 +359,6 @@ namespace RouletteConsole
         {
             return RouletteWheel.Turn();
         }
-
-        /*private void CheckWin()
-        {
-            //int outcome = Roll();
-            int outcome = 15;
-            Console.WriteLine(outcome + " is gerolt");
-            board.WinningTileMaker(outcome);
-            foreach(Tile winningTile in board.WinningTiles)
-            {
-                if (Player.Bets.ContainsKey(winningTile))
-                {
-                    Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
-                    PrintWiningAndPlayerInfo(winningTile);
-                }
-            }
-            Player.Bets.Clear();
-            board.WinningTiles.Clear();
-            PlayAgainQuestion();
-        }*/
 
         private void PrintWiningAndPlayerInfo(Tile winningTile)
         {
@@ -432,7 +390,7 @@ namespace RouletteConsole
                     PlayAgainQuestion();
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 PlayAgainQuestion();
             }

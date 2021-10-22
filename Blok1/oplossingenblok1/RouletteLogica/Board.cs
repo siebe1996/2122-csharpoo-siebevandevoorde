@@ -104,12 +104,18 @@ namespace RouletteLogica
 
         private void AllTileInitializer()
         {
-            TileInitializer(NumberTiles, 36);
-            TileInitializer(BottomTwelveTiles, 3);
+            Task job1 = Task.Run(() => { TileInitializer(NumberTiles, 36); });
+            Task job2 = Task.Run(() => { TileInitializer(BottomTwelveTiles, 3); });
+            Task job3 = Task.Run(() => { TileInitializer(EightTeenTiles, 2); });
+            Task job4 = Task.Run(() => { TileInitializer(EvenOddTiles, 2); });
+            Task job5 = Task.Run(() => { TileInitializer(RedBlackTiles, 2); });
+            Task job6 = Task.Run(() => { TileInitializer(RightTwelveTiles, 3); });
+            Task.WaitAll(new Task[] { job1, job2, job3, job4, job5, job6 });
+            /*TileInitializer(BottomTwelveTiles, 3);
             TileInitializer(EightTeenTiles, 2);
             TileInitializer(EvenOddTiles, 2);
             TileInitializer(RedBlackTiles, 2);
-            TileInitializer(RightTwelveTiles, 3);
+            TileInitializer(RightTwelveTiles, 3);*/
         }
 
         private void RightTwelveTileMaker()
@@ -212,17 +218,25 @@ namespace RouletteLogica
             int outcome = 15;
             Console.WriteLine(outcome + " is gerolt");
             WinningTileMaker(outcome);
-            Tile winnningTileHoler = new Tile();
-            foreach (Tile winningTile in WinningTiles)
+            Tile winnningTileHolder = new Tile();
+            /*foreach (Tile winningTile in WinningTiles)
             {
                 if (Player.Bets.ContainsKey(winningTile))
                 {
                     Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
-                    winnningTileHoler = winningTile;
+                    winnningTileHolder = winningTile;
                 }
-            }
+            }*/
+            Parallel.ForEach(WinningTiles, (Tile winningTile) =>
+            {
+                if (Player.Bets.ContainsKey(winningTile))
+                {
+                    Player.AddWinning(Player.Bets[winningTile] * winningTile.Multiplier);
+                    winnningTileHolder = winningTile;
+                }
+            });
             WinningTiles.Clear();
-            return winnningTileHoler;
+            return winnningTileHolder;
         }
     }
 }
