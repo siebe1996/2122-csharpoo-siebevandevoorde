@@ -142,9 +142,10 @@
 - [x] *Tasks*
 - [ ] *Cross-thread' interactie vanuit een Task met de userinterface*
 - [ ] *Exceptions in Tasks*
-- [ ] *Parallel loops*
+- [x] *Parallel loops*
  
 
+* In `CheckWin()` stockeer je binnen de 'Parallel.For' (als er een speler is met de 'winningTile' ) een 'winningTile' in 'winningTileHolder'. Maar in principe zou het kunnen dat dit tegelijk gebeurt voor meerdere winning Tiles? In datgeval weet je toch niet welke 'winningTile' uiteindelijk in 'WinningTileHolder' terechtkomt?
 * Je gebruikt geen Task cancellation.
 
 #### Concurrent programming: Task synchronisation
