@@ -10,9 +10,11 @@ namespace RouletteData
 {
     public class Data: IData
     {
+        private string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private string filePath;
         public Data()
         {
-
+            filePath = documents + "/player.json";
         }
         public string StreamReader()
         {
@@ -21,7 +23,7 @@ namespace RouletteData
             string line = "";
             try
             {
-                string filePath = @"..\..\..\..\RouletteData\player.json";
+                //string filePath = @"..\..\..\..\RouletteData\player.json";
                 if (File.Exists(filePath))
                 {
                     sr = new StreamReader(filePath);
@@ -67,8 +69,9 @@ namespace RouletteData
                                                                  WriteIndented = true
                                                              });
             //Console.WriteLine(json + "writer");
-            File.WriteAllText(@"..\..\..\..\RouletteData\player.json", json);
-        
+            //File.WriteAllText(@"..\..\..\..\RouletteData\player.json", json);
+            File.WriteAllText(filePath, json);
+
 
         }
 
