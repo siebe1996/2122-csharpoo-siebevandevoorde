@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Globals
 {
-    public interface IBoard
-    {
+    public interface IBoard { 
+    
+        
         Tile[] BottomTwelveTiles { get; }
         Tile[] EightTeenTiles { get; }
         Tile[] EvenOddTiles { get; }
@@ -16,7 +17,7 @@ namespace Globals
         List<Player> Players { get; }
         Tile[] RedBlackTiles { get; }
         Tile[] RightTwelveTiles { get; }
-        List<Tile> WinningTiles { get; }
+        
 
         void CheckIfPlayerExists(string name);
         Tile CheckWin();

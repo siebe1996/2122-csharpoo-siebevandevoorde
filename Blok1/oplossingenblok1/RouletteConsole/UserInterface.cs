@@ -8,11 +8,12 @@ namespace RouletteConsole
     class UserInterface
     {
 
-        private readonly Board board;
+        //private readonly Board board;
+        private readonly IBoard board;
 
-        public UserInterface()
+        public UserInterface(IBoard board)
         {
-            board = new Board();
+            this.board = board;
         }
 
         public void Run()

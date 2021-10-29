@@ -1,4 +1,6 @@
 ﻿using System;
+using RouletteData;
+using RouletteLogica;
 
 namespace RouletteConsole
 {
@@ -6,7 +8,7 @@ namespace RouletteConsole
     {
         static void Main(string[] args)
         {
-            new UserInterface().Run();
+            new UserInterface(new Board(new Data())).Run();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-// using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,15 +17,15 @@ namespace RouletteLogica
         public Tile[] EightTeenTiles { get; } = new Tile[2];
         public Tile[] EvenOddTiles { get; } = new Tile[2];
         public Tile[] RedBlackTiles { get; } = new Tile[2];
-        public List<Tile> WinningTiles { get; } = new List<Tile>();
+        private List<Tile> winningTiles = new List<Tile>();
         public List<Player> Players { get; } = new List<Player>();
         private IData data;
 
-        public Board()
+        public Board(IData data)
         {
             NumbersBoardFiller();
             RunningOverAllNumbers();
-            this.data = new Data();
+            this.data = data;
         }
 
         private void NumbersBoardFiller()
@@ -191,27 +190,27 @@ namespace RouletteLogica
         {
             if (GiveWinningTile(value, NumberTiles) != null)
             {
-                WinningTiles.Add(GiveWinningTile(value, NumberTiles));
+                winningTiles.Add(GiveWinningTile(value, NumberTiles));
             }
             if (GiveWinningTile(value, RightTwelveTiles) != null)
             {
-                WinningTiles.Add(GiveWinningTile(value, RightTwelveTiles));
+                winningTiles.Add(GiveWinningTile(value, RightTwelveTiles));
             }
             if (GiveWinningTile(value, BottomTwelveTiles) != null)
             {
-                WinningTiles.Add(GiveWinningTile(value, BottomTwelveTiles));
+                winningTiles.Add(GiveWinningTile(value, BottomTwelveTiles));
             }
             if (GiveWinningTile(value, EightTeenTiles) != null)
             {
-                WinningTiles.Add(GiveWinningTile(value, EightTeenTiles));
+                winningTiles.Add(GiveWinningTile(value, EightTeenTiles));
             }
             if (GiveWinningTile(value, EvenOddTiles) != null)
             {
-                WinningTiles.Add(GiveWinningTile(value, EvenOddTiles));
+                winningTiles.Add(GiveWinningTile(value, EvenOddTiles));
             }
             if (GiveWinningTile(value, RedBlackTiles) != null)
             {
-                WinningTiles.Add(GiveWinningTile(value, RedBlackTiles));
+                winningTiles.Add(GiveWinningTile(value, RedBlackTiles));
             }
         }
 
@@ -253,7 +252,7 @@ namespace RouletteLogica
                     winnningTileHolder = winningTile;
                 }
             }*/
-            Parallel.ForEach(WinningTiles, (Tile winningTile) =>
+            Parallel.ForEach(winningTiles, (Tile winningTile) =>
             {
                 foreach (Player player in Players)
                 {
@@ -265,7 +264,7 @@ namespace RouletteLogica
                 }
             });
             data.JSONSerializerAndWriter(Players);
-            WinningTiles.Clear();
+            winningTiles.Clear();
             return winnningTileHolder;
         }
     }

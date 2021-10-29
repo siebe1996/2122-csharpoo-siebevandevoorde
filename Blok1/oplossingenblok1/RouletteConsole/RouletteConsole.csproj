@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Globals\Globals.csproj" />
+    <ProjectReference Include="..\RouletteData\RouletteData.csproj" />
     <ProjectReference Include="..\RouletteLogica\RouletteLogica.csproj" />
   </ItemGroup>
 
