@@ -21,7 +21,8 @@ namespace RouletteConsole
             DrawNumbers();
             DrawBottomTwelveTiles();
             DrawLastRow();
-            StartQuestion();
+            NameQuestion();
+            //StartBettingQuestion();
         }
 
         private void DrawIntro()
@@ -184,7 +185,27 @@ namespace RouletteConsole
             return redBlackTile;
         }
 
-        private void StartQuestion()
+        private void NameQuestion()
+        {
+            Console.WriteLine("Geef je naam op.");
+            ReadName();
+        }
+
+        private void ReadName()
+        {
+            string name = Console.ReadLine().Trim();
+            if(name == "")
+            {
+                NameQuestion();
+            }
+            else {
+                board.CheckIfPlayerExists(name);
+                Console.WriteLine($"welkom {board.Players[0].Name} je kapitaal is {board.Players[0].Capital}");
+                StartBettingQuestion();
+            }
+        }
+
+        private void StartBettingQuestion()
         {
             Console.WriteLine("Wil je op een nummer of een speciale tegel inzetten?");
             Console.WriteLine("type 1 voor nummer en 2 voor speciale tegel.");
@@ -206,7 +227,7 @@ namespace RouletteConsole
             else
             {
                 Console.WriteLine("geef 1 of 2 in.");
-                StartQuestion();
+                StartBettingQuestion();
             }
         }
 
@@ -379,7 +400,7 @@ namespace RouletteConsole
                 YesOrNo input4 = (YesOrNo)Enum.Parse(typeof(YesOrNo), Console.ReadLine().ToUpper());
                 if (input4.Equals(YesOrNo.J) || input4.Equals(YesOrNo.Y) || input4.Equals(YesOrNo.JA) || input4.Equals(YesOrNo.YES))
                 {
-                    StartQuestion();
+                    StartBettingQuestion();
                 }
                 else if (input4.Equals(YesOrNo.N) || input4.Equals(YesOrNo.NEE) || input4.Equals(YesOrNo.NO))
                 {

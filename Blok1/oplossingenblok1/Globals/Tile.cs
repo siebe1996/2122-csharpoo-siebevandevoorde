@@ -20,6 +20,7 @@ namespace Globals
         {
             this.Multiplier = multiplier;
         }
+
         public void AddNumber(Number number)
         {
             numbers.Add(number);

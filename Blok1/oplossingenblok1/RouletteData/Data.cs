@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Globals;
 using Newtonsoft.Json;
@@ -11,7 +12,7 @@ namespace RouletteData
     {
         public static string StreamReader()
         {
-            Console.WriteLine("The content of file TestFile.txt\n");
+            //Console.WriteLine("The content of file player.json\n");
             StreamReader sr = null;
             string line = "";
             try
@@ -23,7 +24,7 @@ namespace RouletteData
                     while (!sr.EndOfStream)
                     {
                         line += sr.ReadLine();
-                        Console.WriteLine(line);
+                        //Console.WriteLine(line + "streamreader");
                     }
                 }
             }
@@ -40,70 +41,41 @@ namespace RouletteData
         }
         public static void JSONSerializerAndWriter(List<Player> players)
         {
-            Console.WriteLine("Serializing students to JSON Stream in memory... (using Newtonsoft Json.Net) \n");
 
-            string prevInfo = StreamReader();
+            /*Console.WriteLine("Serializing students to JSON Stream in memory... (using Newtonsoft Json.Net) \n");
+            Console.Write("Jsonserialer players : ");
+            foreach(Player player in players)
+            {
+                Console.Write(player+", ");
+            }*/
+            //Console.WriteLine();
             List<Player> prevPlayers;
-            List<Player> allPlayers = players;
+            prevPlayers = GetPlayers();
+            List<Player> allPlayers = prevPlayers;
             Player presentPlayer;
-            if (prevInfo != "")
-            {
-                prevPlayers = System.Text.Json.JsonSerializer.Deserialize<List<Player>>(prevInfo);
-                foreach (Player prevPlayer in prevPlayers)
-                {
-                    bool playerPresent = false;
-                    foreach (Player player in players)
-                    {
-                        if (prevPlayer.Equals(player))
-                        {
-                            playerPresent = true;
-                        }
-                    }
-                    if (!playerPresent)
-                    {
-                        allPlayers.Add(prevPlayer);
-                    }
-                }
-            }
-
-
-            string json = JsonConvert.SerializeObject(allPlayers);
-            Console.WriteLine(json);
-            File.WriteAllText(@"..\..\..\..\RouletteData\player.json", json);
-
-
-            /*
-            using var reader = new StreamReader(stream);
-            // To Deserialize:
-            //var studentenKopie = (List<Student>)formatter.Deserialize(reader, typeof(List<Student>));
-
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                Console.WriteLine(line);
-            }
-            Console.WriteLine();*/
-            }
-            public static void JSONSerializerDemo2(Player player)
-        {
-            Console.WriteLine("Serializing students to string in memory... (indented, using System.text.Json) \n");
-
-            string json = System.Text.Json.JsonSerializer.Serialize(player);
-            json = System.Text.Json.JsonSerializer.Serialize(player,
+            allPlayers = players.Union(prevPlayers).ToList();
+            
+            string json = System.Text.Json.JsonSerializer.Serialize(allPlayers);
+            json = System.Text.Json.JsonSerializer.Serialize(allPlayers,
 
                                                              new JsonSerializerOptions
                                                              {
                                                                  WriteIndented = true
                                                              });
-            Console.WriteLine(json);
-            File.WriteAllText(@".\RouletteData\player.json", json);
-            /*using FileStream createStream = File.Create(@"D:\path.json");
-            await JsonSerializer.SerializeAsync(createStream, _data*/
+            //Console.WriteLine(json + "writer");
+            File.WriteAllText(@"..\..\..\..\RouletteData\player.json", json);
+        
 
-            /*var studentenKopie = System.Text.Json.JsonSerializer.Deserialize<List<Player>>(json);
-            Console.WriteLine();*/
         }
 
-        
+        public static List<Player> GetPlayers()
+        {
+            string prevInfo = StreamReader();
+
+            return System.Text.Json.JsonSerializer.Deserialize<List<Player>>(prevInfo);
+
+        }
+
+
     }
 }

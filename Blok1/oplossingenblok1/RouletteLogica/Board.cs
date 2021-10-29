@@ -25,7 +25,6 @@ namespace RouletteLogica
         {
             NumbersBoardFiller();
             RunningOverAllNumbers();
-            Players.Add(new Player("dummy", 100));
         }
 
         private void NumbersBoardFiller()
@@ -160,6 +159,30 @@ namespace RouletteLogica
                                             where new MyColor(numberTile.GetNumber(0).Color).ToString().Equals("Black")
                                             select numberTile.GetNumber(0)).ToList());
             */
+        }
+
+        public void CheckIfPlayerExists(string name)
+        {
+            
+            List<Player> allPlayers = Data.GetPlayers();
+            bool playerPresent = false;
+            foreach (Player player in allPlayers)
+            {
+                if (player.Name.Equals(name))
+                {
+                    playerPresent = true;
+                    Players.Add(player);
+                }
+                /*if (player.Equals(newPlayer))
+                {
+                    playerPresent = true;
+                    Players.Add(player);
+                }*/
+            }
+            if (!playerPresent)
+            {
+                Players.Add(new Player(name));
+            }
         }
 
         public void WinningTileMaker(int value)
