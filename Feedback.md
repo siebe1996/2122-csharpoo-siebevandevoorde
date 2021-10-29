@@ -81,11 +81,13 @@
 
 #### Bestanden en 'streams'
 
---> Nog niet beoordeeld
+- [x] *Statische klassen uit 'System.IO'*
+- [x] *Streams*
+- [x] *Serialisatie*
 
-- [ ] *Statische klassen uit 'System.IO'*
-- [ ] *Streams*
-- [ ] *Serialisatie*
+* Gebruik beter een 'using' constructie dan een 'try..catch..finally' waar dat mogelijk is.
+* Gebruik geen paden naar een directory binnen je Visual Studio Project...
+
 
 #### 'Value' en 'Reference' types, cloning van objecten
 
