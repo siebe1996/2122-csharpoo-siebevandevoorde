@@ -78,8 +78,14 @@ namespace RouletteData
         public List<Player> GetPlayers()
         {
             string prevInfo = StreamReader();
-
-            return System.Text.Json.JsonSerializer.Deserialize<List<Player>>(prevInfo);
+            try
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<List<Player>>(prevInfo);
+            }
+            catch(Exception e)
+            {
+                return new List<Player>();
+            }
 
         }
 
