@@ -8,9 +8,13 @@ using Newtonsoft.Json;
 
 namespace RouletteData
 {
-    public class Data
+    public class Data: IData
     {
-        public static string StreamReader()
+        public Data()
+        {
+
+        }
+        public string StreamReader()
         {
             //Console.WriteLine("The content of file player.json\n");
             StreamReader sr = null;
@@ -39,7 +43,7 @@ namespace RouletteData
             Console.WriteLine();
             return line;
         }
-        public static void JSONSerializerAndWriter(List<Player> players)
+        public void JSONSerializerAndWriter(List<Player> players)
         {
 
             /*Console.WriteLine("Serializing students to JSON Stream in memory... (using Newtonsoft Json.Net) \n");
@@ -68,7 +72,7 @@ namespace RouletteData
 
         }
 
-        public static List<Player> GetPlayers()
+        public List<Player> GetPlayers()
         {
             string prevInfo = StreamReader();
 

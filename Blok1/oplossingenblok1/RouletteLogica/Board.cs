@@ -9,7 +9,7 @@ using RouletteData;
 
 namespace RouletteLogica
 {
-    public class Board
+    public class Board : IBoard
     {
         public Number[,] Numbers { get; } = new Number[3, 12];
         public Tile[] NumberTiles { get; } = new Tile[36];
@@ -20,19 +20,21 @@ namespace RouletteLogica
         public Tile[] RedBlackTiles { get; } = new Tile[2];
         public List<Tile> WinningTiles { get; } = new List<Tile>();
         public List<Player> Players { get; } = new List<Player>();
+        private IData data;
 
         public Board()
         {
             NumbersBoardFiller();
             RunningOverAllNumbers();
+            this.data = new Data();
         }
 
         private void NumbersBoardFiller()
         {
             int value = 1;
-            for(int j = 0; j < 12; j++) 
+            for (int j = 0; j < 12; j++)
             {
-                for(int i = 2; i >= 0; i--)
+                for (int i = 2; i >= 0; i--)
                 {
                     Numbers[i, j] = new Number();
                     Numbers[i, j].Value = value;
@@ -45,7 +47,7 @@ namespace RouletteLogica
         private Color GiveColor(int value)
         {
             Color color;
-            if(value < 11 || (value > 18 && value < 29))
+            if (value < 11 || (value > 18 && value < 29))
             {
                 if (value % 2 == 0)
                 {
@@ -74,9 +76,9 @@ namespace RouletteLogica
         {
             int value = 1;
             AllTileInitializer();
-            for (int j = 0; j < 12; j++) 
+            for (int j = 0; j < 12; j++)
             {
-                for(int i = 2; i >= 0; i--)
+                for (int i = 2; i >= 0; i--)
                 {
                     NumberTiles[value - 1].AddNumber(Numbers[i, j]);
                     //Console.Write(value + ", ");
@@ -163,8 +165,8 @@ namespace RouletteLogica
 
         public void CheckIfPlayerExists(string name)
         {
-            
-            List<Player> allPlayers = Data.GetPlayers();
+
+            List<Player> allPlayers = data.GetPlayers();
             bool playerPresent = false;
             foreach (Player player in allPlayers)
             {
@@ -187,7 +189,7 @@ namespace RouletteLogica
 
         public void WinningTileMaker(int value)
         {
-            if(GiveWinningTile(value, NumberTiles) != null)
+            if (GiveWinningTile(value, NumberTiles) != null)
             {
                 WinningTiles.Add(GiveWinningTile(value, NumberTiles));
             }
@@ -253,7 +255,7 @@ namespace RouletteLogica
             }*/
             Parallel.ForEach(WinningTiles, (Tile winningTile) =>
             {
-                foreach(Player player in Players)
+                foreach (Player player in Players)
                 {
                     if (player.Bets.ContainsKey(winningTile))
                     {
@@ -262,7 +264,7 @@ namespace RouletteLogica
                     }
                 }
             });
-            Data.JSONSerializerAndWriter(Players);
+            data.JSONSerializerAndWriter(Players);
             WinningTiles.Clear();
             return winnningTileHolder;
         }
