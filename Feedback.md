@@ -64,18 +64,16 @@
 
 #### Interfaces
 
---> Nog niet beoordeeld
-
-- [ ] *Interface declaratie*
-- [ ] *Interface implementatie*
-- [ ] *Interface gebruiken als type*
+- [x] *Interface declaratie*
+- [x] *Interface implementatie*
+- [x] *Interface gebruiken als type*
 
 #### Architectuur van een toepassing - Meerlagenmodel
 
 - [x] *Klasseblibliotheken*
 - [x] *Meerlagenmodel - 3lagenmodel*
-- [ ] *'Loose coupling' - dependency injection*
-- [ ] *Interface gebruiken als scheiding tussen architectuurlagen*
+- [x] *'Loose coupling' - dependency injection*
+- [x] *Interface gebruiken als scheiding tussen architectuurlagen*
 
 
 
@@ -188,3 +186,4 @@
 - [x] *Code reviews*
 
 * Je eerste codereview is vrij oppervlakkig en algemeen. Probeer volgende keer voor wat meer diepgang te zorgen.
+* Je tweede codereview is al wat beter (maar zeker nogniet perfect :)).
